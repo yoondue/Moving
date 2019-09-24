@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 이 XML의 구조대로 구현될 클래스의 이름 => Impl클래스를 대체한다. -->
+<mapper namespace="MemberMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap id="member" type="com.dto.Member">
+		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
+		<result property="id" column="id" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="userId" column="user_id"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="userPw" column="user_pw"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="nickname" column="nickname"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="age" column="age"
+			javaType="java.lang.Integer" jdbcType="INTEGER" />
+		<result property="gender" column="gender"
+			javaType="java.lang.String" jdbcType="CHAR" />
+		<result property="genre1" column="genre1"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="genre2" column="genre2"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="genre3" column="genre3"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="regDate" column="reg_date"
+			javaType="java.sql.Date" jdbcType="DATE" />
+		<result property="profileImg" column="profile_img"
+	javaType="java.lang.String" jdbcType="VARCHAR" />
+
+	</resultMap>
+
+	<!-- 다중행 조회(목록조회)를 위한 기능 정의 -->
+	<!-- <select id="메서드이름" -->
+	<!-- parameterType="파라미터로 전달될 객체의 클래스 타입" -->
+	<!-- resultMap="리턴될 Beans의 id"> -->
+
+	<!-- AdminPage's memberList -->
+	<select id="selectMemberList" parameterType="com.dto.Member"
+		resultMap="member">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+		SELECT
+		id, user_id, user_pw, nickname, age, gender,
+		genre1, genre2,
+		genre3, reg_date, profile_img
+		FROM member
+		ORDER BY id ASC
+	</select>
+
+	<!-- JoinPage's Email & Nickname Duplicate Check -->
+	<!-- Duplicate check processing takes the same number of data as the input 
+		and handles it ==> resultType is int -->
+	<select id="selectMemberIdCheck" parameterType="com.dto.Member"
+		resultType="int">
+		SELECT count(id) FROM member WHERE user_id = #{userId}
+	</select>
+	<select id="selectMemberNicknameCheck"
+		parameterType="com.dto.Member" resultType="int">
+		SELECT count(id) FROM member
+		WHERE nickname = #{nickname}
+	</select>
+
+	<!-- JoinPage's Join: save member info -->
+	<insert id="insertMember" parameterType="com.dto.Member"
+		useGeneratedKeys="true">
+		<selectKey keyProperty="id" resultType="int" order="BEFORE">
+			SELECT
+			MEM_SEQ.nextval FROM DUAL
+		</selectKey>
+		INSERT INTO member
+		(id, user_id, user_pw, nickname, age, gender,
+		genre1,
+		genre2, genre3, reg_date)
+		VALUES (#{id}, #{userId},
+		#{userPw}, #{nickname}, #{age}, #{gender}, #{genre1}, #{genre2},
+		#{genre3},
+		sysdate)
+	</insert>
+
+</mapper>
