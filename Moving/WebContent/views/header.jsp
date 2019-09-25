@@ -216,7 +216,6 @@ input[type=checkbox]:checked+label:after {
 						</form>
 					</div></li>
 			</ul>
-
 			<form class="search">
 				<input type="text" placeholder="검색어를 입력하세요.">
 				<button type="submit">
