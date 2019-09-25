@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
       pageEncoding="UTF-8"%>
       
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+      
 <jsp:include page="header.jsp" />
 <!DOCTYPE html>
 <html>
@@ -172,10 +175,10 @@
 				
 				<div class="col-md-8 col-12 title-box">
 					<div class="row">
-						<img src="/Moving/images/poster.jpg" class="img-thumbnail">
+						<img src=${movie.image } class="img-thumbnail">
 						<div class="title">
-							<h3>레미제라블</h3>
-							<span>2012</span><span>・</span><span>드라마</span>
+							<h3>${movie.title }</h3>
+							<span>${movie.pubDate }</span><span>・</span><span>${movie.genre }</span>
 							<hr>
 							<span>평점 ★4.0 (79명)</span>
 							<hr>
@@ -199,13 +202,11 @@
 						<br>
 						<div class="content">
 							<h5>기본 정보</h5>
-							<span>빵 한 조각을 훔친 죄로 19년의 감옥살이를 한 장발장(휴 잭맨). 전과자라는 이유만으로 모두의 박해를 받던 장발장은 우연히 만난 신부의 손길 아래 구원을 받고 새로운 삶을 결심한다.
-								 정체를 숨기고 마들렌이라는 새 이름으로 가난한 이들을 도우며 지내던 장발장은 운명의 여인, 판틴(앤 해서웨이)과 마주치고, 죽음을 눈앞에 둔 판틴은 자신의 유일한 희망인 딸, '
-								 코제트(아만다 사이프리드)를 장발장에게 부탁한다. 그러나 코제트를 만나기도 전에 경감 자베르(러셀 크로우)는 장발장의 진짜 정체를 알아차리고, 
-								 오래된 누명으로 다시 체포된 장발장은 코제트를 찾아 탈옥을 감행하는데...</span>
+							<span>${movie.contents }</span>
 							<hr>
 							<h5>출연/제작</h5>
-							<span>톰 후퍼(감독), 휴 잭맨(장발장 역), 앤 핸서웨이(판틴 역), 러셀 크로우(자베르 역), 아만다 사이프리드(코제트 역)</span>
+							<span>${movie.director }(감독), ${movie.actor }
+							</span>
 							<hr>
 							
 							<div class="row co-row">

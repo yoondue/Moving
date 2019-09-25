@@ -19,5 +19,16 @@
 
 	</resultMap>
 
+	<select id="selectReviewList"
+		parameterType="com.dto.Review"
+	 	resultMap="review">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+		SELECT
+			r.id, m.nickname, r.movie_name, r.grade, r.contents, r.like_count, r.reg_date, r.member_id
+		FROM review r, member m
+		WHERE r.member_id=m.id
+		ORDER BY id ASC
+	</select>
+	
 
 </mapper>

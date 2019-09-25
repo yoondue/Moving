@@ -10,6 +10,7 @@ public class Review {
 	int likeCount;
 	Date regDate;
 	int memberId;
+	String nickname;
 
 	public int getId() {
 		return id;
@@ -67,12 +68,19 @@ public class Review {
 		this.memberId = memberId;
 	}
 
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
 	@Override
 	public String toString() {
 		return "Review [id=" + id + ", movieName=" + movieName + ", grade=" + grade + ", contents=" + contents
-				+ ", likeCount=" + likeCount + ", regDate=" + regDate + ", memberId=" + memberId + "]";
+				+ ", likeCount=" + likeCount + ", regDate=" + regDate + ", memberId=" + memberId + ", nickname="
+				+ nickname + "]";
 	}
-
-	
 
 }

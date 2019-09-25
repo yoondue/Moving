@@ -1,5 +1,11 @@
 package com.service;
 
-public interface ReviewService {
+import java.util.List;
 
+import com.dto.Review;
+
+public interface ReviewService {
+	
+	public List<Review> selectReviewList() throws Exception;
+	
 }

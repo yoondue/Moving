@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     
 <jsp:include page="header.jsp" />
 
@@ -44,10 +46,9 @@
 			<div class="row">
 				<div class="col-md-3">
 					<div class="list-group">
-					  <a href="#" class="list-group-item"><span class="glyphicon glyphicon-hand-right"></span> 회원 관리</a>
-					  <a href="#" class="list-group-item"><span class="glyphicon glyphicon-hand-right"></span> 리뷰 관리</a>
-					  <a href="#" class="list-group-item"><span class="glyphicon glyphicon-hand-right"></span> 추천리스트 관리</a>
-					  <a href="#" class="list-group-item"><span class="glyphicon glyphicon-hand-right"></span> 에디터 추천 영화</a>
+					  <a href="${pageContext.request.contextPath}/admin_member.do" class="list-group-item">회원 관리</a>
+					  <a href="${pageContext.request.contextPath}/admin_review.do" class="list-group-item">리뷰 관리</a>
+					  <a href="${pageContext.request.contextPath}/admin_list_movie.do" class="list-group-item">에디터 추천 영화</a>
 					</div>
 				</div>
 				
@@ -64,86 +65,25 @@
 									<th>별점</th>
 									<th>추천 수</th>
 								</tr>
-								<tr>
-									<td>1</td>
-									<td>토이스토리4</td>
-									<td>선택과 성장에 대한 이야기...</td>
-									<td>꼬부기</td>
-									<td>5.0</td>
-									<td>10</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>엑시트</td>
-									<td>일정 글자 이상 넘어가면 ...처리</td>
-									<td>파이리</td>
-									<td>4.0</td>
-									<td>2</td>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>토이스토리4</td>
-									<td>선택과 성장에 대한 이야기...</td>
-									<td>꼬부기</td>
-									<td>5.0</td>
-									<td>10</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>엑시트</td>
-									<td>일정 글자 이상 넘어가면 ...처리</td>
-									<td>파이리</td>
-									<td>4.0</td>
-									<td>2</td>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>토이스토리4</td>
-									<td>선택과 성장에 대한 이야기...</td>
-									<td>꼬부기</td>
-									<td>5.0</td>
-									<td>10</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>엑시트</td>
-									<td>일정 글자 이상 넘어가면 ...처리</td>
-									<td>파이리</td>
-									<td>4.0</td>
-									<td>2</td>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>토이스토리4</td>
-									<td>선택과 성장에 대한 이야기...</td>
-									<td>꼬부기</td>
-									<td>5.0</td>
-									<td>10</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>엑시트</td>
-									<td>일정 글자 이상 넘어가면 ...처리</td>
-									<td>파이리</td>
-									<td>4.0</td>
-									<td>2</td>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>토이스토리4</td>
-									<td>선택과 성장에 대한 이야기...</td>
-									<td>꼬부기</td>
-									<td>5.0</td>
-									<td>10</td>
-								</tr>
-								<tr>
-									<td>10</td>
-									<td>엑시트</td>
-									<td>일정 글자 이상 넘어가면 ...처리</td>
-									<td>파이리</td>
-									<td>4.0</td>
-									<td>2</td>
-								</tr>
+								<c:choose>
+										<c:when test="${fn:length(reviewList)>0 }">
+											<c:forEach var="review" items="${reviewList}">
+												<tr>
+													<td>${review.id }</td>
+													<td>${review.movieName }</td>
+													<td>${review.contents }</td>
+													<td>${review.nickname }</td>
+													<td>${review.grade }</td>
+													<td>${review.likeCount }</td>
+												</tr>
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
+											<tr>
+				           						<td colspan="5" class="text-center" style="line-height: 100px;">조회된 글이 없습니다.</td>
+				        					</tr>
+										</c:otherwise>
+									</c:choose>
 							</table>
 							
 							<div class="page">
