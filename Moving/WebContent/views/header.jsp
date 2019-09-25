@@ -119,6 +119,15 @@ input[type=checkbox]:checked+label:after {
 #user {
 	cursor: pointer;
 }
+
+#loginDropDown {
+	list-style: none;
+}
+
+#loginDropDownMenu {
+	align-content: center;
+	width: 20px;
+}
 </style>
 
 <script type="text/javascript">
@@ -207,7 +216,6 @@ input[type=checkbox]:checked+label:after {
 						</form>
 					</div></li>
 			</ul>
-
 			<form class="search">
 				<input type="text" placeholder="검색어를 입력하세요.">
 				<button type="submit">
@@ -220,19 +228,17 @@ input[type=checkbox]:checked+label:after {
 						</button>
 					</c:when>
 					<c:otherwise>
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" style="padding: 5px">${loginInfo.nickname}님
-								<span class="caret"></span>
+						<li class="dropdown" id="loginDropDown"><a href="#"
+							class="dropdown-toggle" data-toggle="dropdown"
+							style="padding: 5px">${loginInfo.nickname} <span
+								class="caret"></span>
 						</a> <!-- 로그인한 경우 표시될 메뉴 -->
-							<ul class="dropdown-menu">
-								<li><a
-									href="${pageContext.request.contextPath}/logout.do">
+							<ul class="dropdown-menu" id="loginDropDownMenu">
+								<li><a href="${pageContext.request.contextPath}/logout.do">
 										로그아웃</a></li>
-								<li><a
-									href="${pageContext.request.contextPath}/myPage.do">
+								<li><a href="${pageContext.request.contextPath}/myPage.do">
 										마이페이지</a></li>
-								<li><a
-									href="${pageContext.request.contextPath}/out.do">
+								<li><a href="${pageContext.request.contextPath}/out.do">
 										회원탈퇴</a></li>
 							</ul></li>
 					</c:otherwise>
