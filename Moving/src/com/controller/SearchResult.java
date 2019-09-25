@@ -50,42 +50,49 @@ public class SearchResult extends BaseController {
 		
 		movieService = new MovieServiceImpl(sqlSession, logger);
 		
-		String[] genre = web.getStringArray("genre", null);
-		
-		System.out.println("장르 : " + genre[0].toString());
-		
 		Movie movie = new Movie();
+		
+		String[] genre = web.getStringArray("genre", null);
 		
 		if(genre.length <= 0) {
 			web.redirect(null, "입력값이 없습니다.");
 		}
 		
 		// 검색할 장르 movie객체에 넣기
-		switch(genre.length) {
-		case 1:
+		if(genre.length == 1) {
 			String result = URLDecoder.decode(genre[0], "UTF-8");
 			movie.setGenre1(result);
-			System.out.println(movie.getGenre1());
-			break;
-			
-		case 2:
-			movie.setGenre1(genre[0]);
-			movie.setGenre2(genre[1]);
-			break;
-			
-		case 3:
-			movie.setGenre1(genre[0]);
-			movie.setGenre2(genre[1]);
-			movie.setGenre3(genre[2]);
-			break;
 		}
-		
+		else if(genre.length == 2) {
+			String result = URLDecoder.decode(genre[0], "UTF-8");
+			movie.setGenre1(result);
+			result = URLDecoder.decode(genre[1], "UTF-8");
+			movie.setGenre2(result);
+		}
+		else if(genre.length == 3) {
+			String result = URLDecoder.decode(genre[0], "UTF-8");
+			movie.setGenre1(result);
+			result = URLDecoder.decode(genre[1], "UTF-8");
+			movie.setGenre2(result);
+			result = URLDecoder.decode(genre[2], "UTF-8");
+			movie.setGenre3(result);
+		}
 		
 		// 장르에 맞는 영화 검색
 		List<Movie> movieList = null;
 		
 		try {
-			movieList = movieService.selectGenre(movie);
+			// 체크한 장르가 하나일때
+			if(genre.length == 1) {
+				movieList = movieService.selectGenreOne(movie);
+			}
+			else if(genre.length == 2) {
+				movieList = movieService.selectGenreTwo(movie);
+			}
+			else if(genre.length == 3) {
+				movieList = movieService.selectGenreThree(movie);
+			}
+			
 		} catch (Exception e) {
 			web.redirect(null, e.getLocalizedMessage());
 			return null;
@@ -98,8 +105,5 @@ public class SearchResult extends BaseController {
 		
 		return "search_result";
 	}
-	
-       
-
 
 }

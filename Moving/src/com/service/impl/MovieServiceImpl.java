@@ -25,12 +25,58 @@ public class MovieServiceImpl implements MovieService{
 	}
 
 	@Override
-	public List<Movie> selectGenre(Movie movie) throws Exception {
+	public List<Movie> selectGenreOne(Movie movie) throws Exception {
 		
 		List<Movie> result = null;
 		
 		try {
-			result = sqlSession.selectList("MovieMapper.selectGenre", movie);
+			result = sqlSession.selectList("MovieMapper.selectGenreOne", movie);
+			
+			if (result == null) {
+				throw new NullPointerException();
+			}
+			
+		}catch(NullPointerException e) {
+			sqlSession.rollback();
+			throw new Exception("조회된 영화 목록이 없습니다.");
+		}catch (Exception e) {
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("영화 목록 조회에 실패했습니다.");
+		}
+		
+		return result;
+	}
+
+	@Override
+	public List<Movie> selectGenreTwo(Movie movie) throws Exception {
+
+		List<Movie> result = null;
+		
+		try {
+			result = sqlSession.selectList("MovieMapper.selectGenreTwo", movie);
+			
+			if (result == null) {
+				throw new NullPointerException();
+			}
+			
+		}catch(NullPointerException e) {
+			sqlSession.rollback();
+			throw new Exception("조회된 영화 목록이 없습니다.");
+		}catch (Exception e) {
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("영화 목록 조회에 실패했습니다.");
+		}
+		
+		return result;
+	}
+
+	@Override
+	public List<Movie> selectGenreThree(Movie movie) throws Exception {
+
+		List<Movie> result = null;
+		
+		try {
+			result = sqlSession.selectList("MovieMapper.selectGenreThree", movie);
 			
 			if (result == null) {
 				throw new NullPointerException();

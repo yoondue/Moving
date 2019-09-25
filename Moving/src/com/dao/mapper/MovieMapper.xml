@@ -20,7 +20,7 @@
 		<result property="image" column="movie_img" />
 	</resultMap>
 
-	<select id="selectGenre"
+	<select id="selectGenreOne"
 		parameterType="com.dto.Movie"
 	 	resultMap="movie">
 		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
@@ -28,6 +28,31 @@
 			movie_name, genre1, genre2, genre3, year, country, grade, movie_img
 		FROM movie
 		WHERE genre1 = #{genre1} OR genre2 = #{genre1} OR genre3 = #{genre1}
+		ORDER BY id ASC
+	</select>
+	
+	<select id="selectGenreTwo"
+		parameterType="com.dto.Movie"
+	 	resultMap="movie">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+		SELECT
+			movie_name, genre1, genre2, genre3, year, country, grade, movie_img
+		FROM movie
+		WHERE genre1 = #{genre1} OR genre2 = #{genre1} OR genre3 = #{genre1}
+			OR genre1 = #{genre2} OR genre2 = #{genre2} OR genre3 = #{genre2}
+		ORDER BY id ASC
+	</select>
+
+	<select id="selectGenreThree"
+		parameterType="com.dto.Movie"
+	 	resultMap="movie">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+		SELECT
+			movie_name, genre1, genre2, genre3, year, country, grade, movie_img
+		FROM movie
+		WHERE genre1 = #{genre1} OR genre2 = #{genre1} OR genre3 = #{genre1}
+			OR genre1 = #{genre2} OR genre2 = #{genre2} OR genre3 = #{genre2}
+			OR genre1 = #{genre3} OR genre2 = #{genre3} OR genre3 = #{genre3}
 		ORDER BY id ASC
 	</select>
 	

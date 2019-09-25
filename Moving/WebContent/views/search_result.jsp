@@ -72,7 +72,30 @@
 										<div class="span-box">
 											<a href="#"><span class="title">${movie.title}</span></a>
 											<span class="content">${movie.pubDate}・${movie.country}</span>
-											<span class="content">${movie.genre1}</span>
+											
+											<c:choose>
+												<c:when test="${ null ne movie.genre3 }">
+													<span class="content">${movie.genre1}・${movie.genre2 }・${movie.genre3 }</span>
+												</c:when>
+												<c:when test="${ null ne movie.genre2 }">
+													<span class="content">${movie.genre1}・${movie.genre2 }</span>
+												</c:when>
+												<c:when test="${ null ne movie.genre1 }">
+													<span class="content">${movie.genre1}</span>
+												</c:when>
+											</c:choose>
+											
+											
+											
+<%-- 											<c:if test="${ null ne movie.genre3 }"> --%>
+<%-- 												<span class="content">${movie.genre1}</span> --%>
+<%-- 											</c:if> --%>
+<%-- 											<c:if test="${movie.genre3 == null }"> --%>
+<%-- 												<span class="content">${movie.genre1}・${movie.genre2 }</span> --%>
+<%-- 											</c:if> --%>
+<%-- 											<c:if test="${movie.genre1 != null }"> --%>
+<%-- 												<span class="content">${movie.genre1}・${movie.genre2 }</span> --%>
+<%-- 											</c:if> --%>
 										</div>						
 									</div>
 								</c:forEach>
