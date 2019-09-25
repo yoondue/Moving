@@ -21,5 +21,6 @@
 		<mapper resource="com/dao/mapper/RecommendMovieMapper.xml" />
 		<mapper resource="com/dao/mapper/ReviewMapper.xml" />
 		<mapper resource="com/dao/mapper/ScrapMapper.xml" />
+		<mapper resource="com/dao/mapper/MovieMapper.xml" />
 	</mappers>
 </configuration>

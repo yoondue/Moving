@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 이 XML의 구조대로 구현될 클래스의 이름 => Impl클래스를 대체한다. -->
+<mapper namespace="ReviewMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap id="movie" type="com.dto.Movie">
+		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
+		<result property="id" column="id" />
+		<result property="title" column="movie_name" />
+		<result property="genre1" column="genre1" />
+		<result property="genre2" column="genre2" />
+		<result property="genre3" column="genre3" />
+		<result property="pubDate" column="year" />
+		<result property="country" column="country" />
+		<result property="grade" column="grade" />
+		<result property="image" column="movie_img" />
+	</resultMap>
+
+	<select id="selectGenre"
+		parameterType="com.dto.Movie"
+	 	resultMap="movie">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+		SELECT
+			movie_name, genre1, genre2, genre3, year, country, grade, movie_img
+		FROM movie
+		WHERE genre1 = #{genre1} OR genre2 = #{genre1} OR genre3 = #{genre1}
+		ORDER BY id ASC
+	</select>
+	
+
+</mapper>

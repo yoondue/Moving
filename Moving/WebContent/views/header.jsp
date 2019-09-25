@@ -119,6 +119,15 @@ input[type=checkbox]:checked+label:after {
 #user {
 	cursor: pointer;
 }
+
+#loginDropDown {
+	list-style: none;
+}
+
+#loginDropDownMenu {
+	align-content: center;
+	width: 20px;
+}
 </style>
 
 <script type="text/javascript">
@@ -161,7 +170,7 @@ input[type=checkbox]:checked+label:after {
 						<p style="padding: 30px 0 0 150px;">장르별&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;평점별</p>
 						<form action="${pageContext.request.contextPath}/search_result.do"
-							method="post" id="ck_search">
+							method="get" id="ck_search">
 							<div style="float: left; margin: 0 40px 30px 50px;">
 								<br> <input type="checkbox" name="genre" value="drama"
 									id="chk1"><label for="chk1"></label>드라마<br> <input
@@ -179,7 +188,7 @@ input[type=checkbox]:checked+label:after {
 									name="genre" value="animation" id="chk7"><label
 									for="chk7"></label>애니메이션<br> <input type="checkbox"
 									name="genre" value="crime" id="chk8"><label for="chk8"></label>범죄<br>
-								<br> <br> <input type="button" value="검색하기"
+								<br> <br> <input type="submit" value="검색하기"
 									id="searchBtn">
 							</div>
 							<div style="float: left; margin: 0 40px 30px 0;">
@@ -220,19 +229,17 @@ input[type=checkbox]:checked+label:after {
 						</button>
 					</c:when>
 					<c:otherwise>
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" style="padding: 5px">${loginInfo.nickname}님
-								<span class="caret"></span>
+						<li class="dropdown" id="loginDropDown"><a href="#"
+							class="dropdown-toggle" data-toggle="dropdown"
+							style="padding: 5px">${loginInfo.nickname} <span
+								class="caret"></span>
 						</a> <!-- 로그인한 경우 표시될 메뉴 -->
-							<ul class="dropdown-menu">
-								<li><a
-									href="${pageContext.request.contextPath}/logout.do">
+							<ul class="dropdown-menu" id="loginDropDownMenu">
+								<li><a href="${pageContext.request.contextPath}/logout.do">
 										로그아웃</a></li>
-								<li><a
-									href="${pageContext.request.contextPath}/myPage.do">
+								<li><a href="${pageContext.request.contextPath}/myPage.do">
 										마이페이지</a></li>
-								<li><a
-									href="${pageContext.request.contextPath}/out.do">
+								<li><a href="${pageContext.request.contextPath}/out.do">
 										회원탈퇴</a></li>
 							</ul></li>
 					</c:otherwise>

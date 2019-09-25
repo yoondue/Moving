@@ -126,10 +126,9 @@ public class MovieHelper{
 		return movie;
 	}
 	
-public List<Movie> jsonParserList(String json) throws ParseException {
+	public List<Movie> jsonParserList(String json) throws ParseException {
 		
 		List<Movie> movieList = new ArrayList<Movie>();
-		
 		
 		JSONParser parser = new JSONParser();
 		JSONObject obj = (JSONObject) parser.parse(json);
@@ -190,5 +189,58 @@ public List<Movie> jsonParserList(String json) throws ParseException {
 		}
 		return movieList;
 	}
+	
+//	public List<Movie> searchGenre(String genre){
+//		
+//		List<Movie> movieList = new ArrayList<Movie>();
+//		
+//		String url = "https://movie.naver.com/movie/sdb/browsing/bmovie.nhn?genre=" + genre;
+//		
+//		
+//		
+//		for(int i=0; i<20; i++) {
+//			
+//			Movie movie = new Movie();
+//			
+//			Document doc1 = null;
+//			Document doc2 = null;
+//			
+//			try {
+//				doc1 = Jsoup.connect(url)
+//						// .header("query", "라푼젤")
+//						// .header("section", "all")
+//						// .header("ie", "utf-8")
+//						.get();
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//			
+//			Elements element1 = doc1.select(".directory_list");
+//			String movieUrl = element1.select("li:eq("+i+") a:first").attr("href");
+//			
+//			System.out.println(movieUrl);
+//			
+//			// 영화 상세페이지로 이동
+//			try {
+//				doc2 = Jsoup.connect(movieUrl)
+//						// .header("query", "라푼젤")
+//						// .header("section", "all")
+//						// .header("ie", "utf-8")
+//						.get();
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//			
+//			Elements posterEl = doc2.select(".poster");
+//			String poster = posterEl.select("a img").attr("src");
+//			
+//			Elements titleEl = doc2.select(".mv_info_area");
+//			String title = titleEl.select("h3 a").text();
+//			
+//		}
+//		
+//		return movieList;
+//	}
+	
 	
 }

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
       pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
       
 <jsp:include page="header.jsp" />
 <!DOCTYPE html>
@@ -59,6 +61,40 @@
 				<div class="col-md-1 col-2"></div>
 				
 				<div class="col-md-10 col-8">
+				
+					<c:choose>
+						<c:when test="${fn:length(movieList)>0 }">
+							<c:forEach var="movie" items="${movieList}" varStatus="status">
+								<c:if test="${(status.index %4)==0}">
+									<div class="row">
+								</c:if>
+								<div class="col-md-3">
+									<div class="img-box">
+										<a href="#"><img src="${movie.image}" class="img-thumbnail"></a>
+									</div>
+									<div class="span-box">
+										<a href="#"><span class="title">${movie.title}</span></a>
+										<span class="content">${movie.pubDate}・${movie.country}</span>
+										<span class="content">${movie.genre1}</span>
+									</div>						
+								</div>
+								<c:if test="${(status.index %4)==0}">	
+									</div>
+								
+								</c:if>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+								<tr>
+				           			<td colspan="5" class="text-center" style="line-height: 100px;">조회된 글이 없습니다.</td>
+				        		</tr>
+						</c:otherwise>
+					</c:choose>
+					
+				
+				
+				
+				
 				
 					<div class="row">
 						<div class="col-md-3">
