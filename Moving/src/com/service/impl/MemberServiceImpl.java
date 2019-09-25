@@ -109,4 +109,24 @@ public class MemberServiceImpl implements MemberService {
 
 	}
 
+	@Override
+	public Member selectLoginInfo(Member member) throws Exception {
+		Member result = null;
+
+		try {
+			result = sqlSession.selectOne("MemberMapper.selectLoginInfo", member);
+
+			if (result == null) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			throw new Exception("아이디 또는 비밀번호가 잘못되었습니다.");
+		} catch (Exception e) {
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("로그인에 실패하였습니다.");
+		}
+
+		return result;
+	}
+
 }

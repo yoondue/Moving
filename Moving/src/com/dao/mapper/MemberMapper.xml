@@ -30,7 +30,7 @@
 		<result property="regDate" column="reg_date"
 			javaType="java.sql.Date" jdbcType="DATE" />
 		<result property="profileImg" column="profile_img"
-	javaType="java.lang.String" jdbcType="VARCHAR" />
+			javaType="java.lang.String" jdbcType="VARCHAR" />
 
 	</resultMap>
 
@@ -76,9 +76,19 @@
 		genre1,
 		genre2, genre3, reg_date)
 		VALUES (#{id}, #{userId},
-		#{userPw}, #{nickname}, #{age}, #{gender}, #{genre1}, #{genre2},
+		#{userPw},
+		#{nickname}, #{age}, #{gender}, #{genre1}, #{genre2},
 		#{genre3},
 		sysdate)
 	</insert>
+
+	<!-- Login: Member Information Inquiry -->
+	<select id="selectLoginInfo" parameterType="com.dto.Member"
+		resultMap="member">
+		SELECT id, user_id, user_pw, nickname, age, gender, genre1,
+		genre2, genre3, reg_date) FROM member WHERE user_id = #{userId} AND
+		user_pw = password(#{userPw}) OREDER BY id DESC LIMIT 0, 1
+	</select>
+
 
 </mapper>

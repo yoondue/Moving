@@ -18,5 +18,8 @@ public interface MemberService {
 	
 	// JoinPage's Join: save member info
 	public void insertMember(Member member) throws Exception;
+	
+	// LoginPage's login
+	public Member selectLoginInfo(Member member) throws Exception;
 
 }

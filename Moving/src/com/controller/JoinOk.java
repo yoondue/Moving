@@ -24,25 +24,25 @@ import oracle.sql.DATE;
  * Servlet implementation class joinOk
  */
 @WebServlet("/joinOk.do")
-public class joinOk extends BaseController {
+public class JoinOk extends BaseController {
+	private static final long serialVersionUID = -4225169984323860028L;
+
 	// 1. Declare Helper + Service Object
 	SqlSession sqlSession;
 	WebHelper web;
 	RegexHelper regex;
 	MemberServiceImpl memberService;
 
-	private static final long serialVersionUID = -4225169984323860028L;
-
 	@Override
 	public String doRun(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 2. Create Helper + Service Object
-		// Put the passed parameters in Beans Object
 		logger = LogManager.getFormatterLogger(request.getRequestURI());
 		sqlSession = MyBatisConnectionFactory.getSqlSession();
 		web = WebHelper.getInstance(request, response);
 		regex = RegexHelper.getInstance();
 		memberService = new MemberServiceImpl(sqlSession, logger);
 
+		// 3. Put the passed parameters in Beans Object
 		Member member = new Member();
 		member.setUserId(web.getString("user_id"));
 		member.setUserPw(web.getString("user_pw"));
@@ -56,7 +56,7 @@ public class joinOk extends BaseController {
 		// System.out.println(member.getUserId());
 		// System.out.println(member.getAge());
 
-		// 3. Validate Input
+		// 4. Validate Input
 		// Email
 		if (!regex.isValue(member.getUserId())) {
 			sqlSession.close();
@@ -121,7 +121,7 @@ public class joinOk extends BaseController {
 			return null;
 		}
 
-		// 4. Database Save Processing through Service
+		// 5. Database Save Processing through Service
 		try {
 			memberService.insertMember(member);
 		} catch (Exception e) {
@@ -130,9 +130,9 @@ public class joinOk extends BaseController {
 			return null;
 		}
 
-		// 5. Complete Join -> Move Main Page
+		// 6. Complete Join -> Move Login Page
 		sqlSession.close();
-		web.redirect(web.getRootPath() + "/main.do", "회원가입이 완료되었습니다.");
+		web.redirect(web.getRootPath() + "/login.do", "회원가입이 완료되었습니다.");
 
 		return null;
 	}
