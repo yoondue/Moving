@@ -7,16 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dto.Member;
 import com.helper.BaseController;
 import com.helper.WebHelper;
 
 /**
- * Servlet implementation class Join
+ * Servlet implementation class Logout
  */
-@WebServlet("/join.do")
-public class Join extends BaseController {
+@WebServlet("/logout.do")
+public class Logout extends BaseController {
 
-	private static final long serialVersionUID = 8039497732399319792L;
+	private static final long serialVersionUID = -8259203282375679952L;
 
 	// 1. Declare Helper + Service Object
 	WebHelper web;
@@ -27,11 +28,19 @@ public class Join extends BaseController {
 		web = WebHelper.getInstance(request, response);
 
 		// 3. Check for Login
-		if (web.getSession("loginInfo") != null) {
-			web.redirect(web.getRootPath() + "/main.do", "이미 로그인 하셨습니다.");
+		Member loginInfo = (Member) web.getSession("loginInfo"); // Get member login
+
+		if (loginInfo == null) {
+			web.redirect(web.getRootPath() + "/login.do", "로그인 후 이용 가능합니다.");
 		}
 
-		return "join";
+		// 4. Logout
+		web.removeAllSession();
+
+		// 5. Move Page
+		web.redirect(web.getRootPath() + "/main.do", "로그아웃 되었습니다.");
+
+		return null;
 	}
 
 }

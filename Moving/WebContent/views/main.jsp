@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR" import="java.sql.*"%>
 
-<%!
-	Connection conn; // 드라이버 로드
+<%!Connection conn; // 드라이버 로드
 
 	// DB 접속 확인
 	String driver = "oracle.jdbc.driver.OracleDriver";
@@ -101,7 +100,8 @@ section {
 					</ol>
 					<div class="carousel-inner">
 						<div class="carousel-item active">
-							<img class="d-block w-100" src="../images/carousel1.png"
+							<img class="d-block w-100"
+								src="${pageContext.request.contextPath}/images/carousel1.png"
 								alt="First slide" id="carouselMovie1">
 							<div class="carousel-caption d-none d-md-block"
 								style="text-align: left">
@@ -110,7 +110,8 @@ section {
 							</div>
 						</div>
 						<div class="carousel-item">
-							<img class="d-block w-100" src="../images/carousel2.png"
+							<img class="d-block w-100"
+								src="${pageContext.request.contextPath}/images/carousel2.png"
 								alt="Second slide" id="carouselMovie2">
 							<div class="carousel-caption d-none d-md-block"
 								style="text-align: left">
@@ -119,7 +120,8 @@ section {
 							</div>
 						</div>
 						<div class="carousel-item">
-							<img class="d-block w-100" src="../images/carousel3.png"
+							<img class="d-block w-100"
+								src="${pageContext.request.contextPath}/images/carousel3.png"
 								alt="Third slide" id="carouselMovie3">
 							<div class="carousel-caption d-none d-md-block"
 								style="text-align: left">
@@ -142,7 +144,8 @@ section {
 					<div class="col-md-10">
 						<div class="card-deck">
 							<div class="card movie1">
-								<img src="../images/dummy.png" class="card-img-top" alt="...">
+								<img src="${pageContext.request.contextPath}/images/dummy.png"
+									class="card-img-top" alt="...">
 								<div class="card-body movieBody">
 									<h6 class="card-title">레미제라블</h6>
 									<p class="card-text">
@@ -151,7 +154,8 @@ section {
 								</div>
 							</div>
 							<div class="card movie2">
-								<img src="../images/dummy.png" class="card-img-top" alt="...">
+								<img src="${pageContext.request.contextPath}/images/dummy.png"
+									class="card-img-top" alt="...">
 								<div class="card-body deckBody">
 									<h6 class="card-title">레미제라블</h6>
 									<p class="card-text">
@@ -160,7 +164,8 @@ section {
 								</div>
 							</div>
 							<div class="card movie3">
-								<img src="../images/dummy.png" class="card-img-top" alt="...">
+								<img src="${pageContext.request.contextPath}/images/dummy.png"
+									class="card-img-top" alt="...">
 								<div class="card-body deckBody">
 									<h6 class="card-title">레미제라블</h6>
 									<p class="card-text">
@@ -169,7 +174,8 @@ section {
 								</div>
 							</div>
 							<div class="card movie4">
-								<img src="../images/dummy.png" class="card-img-top" alt="...">
+								<img src="${pageContext.request.contextPath}/images/dummy.png"
+									class="card-img-top" alt="...">
 								<div class="card-body deckBody">
 									<h6 class="card-title">레미제라블</h6>
 									<p class="card-text">

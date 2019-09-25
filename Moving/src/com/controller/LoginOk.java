@@ -41,6 +41,9 @@ public class LoginOk extends BaseController {
 		memberService = new MemberServiceImpl(sqlSession, logger);
 
 		// 3. Check for Login
+		if (web.getSession("loginInfo") != null) {
+			web.redirect(web.getRootPath() + "/main.do", "이미 로그인 하셨습니다.");
+		}
 
 		// 4. Parameter Processing
 		String userId = web.getString("user_id");
@@ -67,20 +70,20 @@ public class LoginOk extends BaseController {
 			web.redirect(null, e.getLocalizedMessage());
 			return null;
 		}
-		
+
 		// 7. Save Retrieved Member Information in Session
 		web.setSession("loginInfo", loginInfo);
-		
+
 		// 8. Move Page
 		String movePage = request.getHeader("referer");
-		if(movePage == null) { // if the previous page does not exist,
+		if (movePage == null) { // if the previous page does not exist,
 			movePage = web.getRootPath() + "/main.do"; // move main
 		}
-		
+
 		sqlSession.close();
 		web.redirect(movePage, null);
 
-		return null;
+		return "main";
 
 	}
 

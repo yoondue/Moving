@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -132,12 +133,7 @@ input[type=checkbox]:checked+label:after {
 		});
 
 		$("#user").click(function() {
-			// 추후 작업: if문으로 조건 걸기 - login, logout에 따라
-			// login
-			location.href = "login.jsp"
-
-			// logout
-			//location.href = "my_page.jsp"
+			location.href = "${pageContext.request.contextPath}/login.do";
 		});
 	});
 </script>
@@ -164,15 +160,15 @@ input[type=checkbox]:checked+label:after {
 						id="menuBox">
 						<p style="padding: 30px 0 0 150px;">장르별&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;평점별</p>
-						<form action="${pageContext.request.contextPath}/search_result.do" method="post" id="ck_search">
+						<form action="${pageContext.request.contextPath}/search_result.do"
+							method="post" id="ck_search">
 							<div style="float: left; margin: 0 40px 30px 50px;">
 								<br> <input type="checkbox" name="genre" value="drama"
 									id="chk1"><label for="chk1"></label>드라마<br> <input
 									type="checkbox" name="genre" value="thriller" id="chk2"><label
 									for="chk2"></label>스릴러<br> <input type="checkbox"
-									name="genre" value="comedy" id="chk3"><label
-									for="chk3"></label>코미디<br> <input type="checkbox"
-									name="genre" value="action" id="chk4"><label
+									name="genre" value="comedy" id="chk3"><label for="chk3"></label>코미디<br>
+								<input type="checkbox" name="genre" value="action" id="chk4"><label
 									for="chk4"></label>액션
 							</div>
 							<div style="float: left; margin: 0 40px 30px 0;">
@@ -182,9 +178,9 @@ input[type=checkbox]:checked+label:after {
 									for="chk6"></label>공포<br> <input type="checkbox"
 									name="genre" value="animation" id="chk7"><label
 									for="chk7"></label>애니메이션<br> <input type="checkbox"
-									name="genre" value="crime" id="chk8"><label
-									for="chk8"></label>범죄<br> <br> <br> <input
-									type="button" value="검색하기" id="searchBtn">
+									name="genre" value="crime" id="chk8"><label for="chk8"></label>범죄<br>
+								<br> <br> <input type="button" value="검색하기"
+									id="searchBtn">
 							</div>
 							<div style="float: left; margin: 0 40px 30px 0;">
 								<br> <input type="checkbox" name="genre" value="fantasy"
@@ -217,9 +213,30 @@ input[type=checkbox]:checked+label:after {
 				<button type="submit">
 					<i class="fa fa-search"></i>
 				</button>
-				<button type="button">
-					<i class="fa fa-user" id="user"></i>
-				</button>
+				<c:choose>
+					<c:when test="${loginInfo == null}">
+						<button type="button">
+							<i class="fa fa-user" id="user"></i>
+						</button>
+					</c:when>
+					<c:otherwise>
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown" style="padding: 5px">${loginInfo.nickname}님
+								<span class="caret"></span>
+						</a> <!-- 로그인한 경우 표시될 메뉴 -->
+							<ul class="dropdown-menu">
+								<li><a
+									href="${pageContext.request.contextPath}/logout.do">
+										로그아웃</a></li>
+								<li><a
+									href="${pageContext.request.contextPath}/myPage.do">
+										마이페이지</a></li>
+								<li><a
+									href="${pageContext.request.contextPath}/out.do">
+										회원탈퇴</a></li>
+							</ul></li>
+					</c:otherwise>
+				</c:choose>
 			</form>
 
 		</div>

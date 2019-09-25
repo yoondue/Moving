@@ -11,11 +11,9 @@ import com.service.MemberService;
 public class MemberServiceImpl implements MemberService {
 
 	/** 처리 결과를 기록할 Log4J 객체 생성 */
-	// --> import org.apache.logging.log4j.Logger;
 	Logger logger;
 
 	/** MyBatis */
-	// --> import org.apache.ibatis.session.SqlSession
 	SqlSession sqlSession;
 
 	/** 생성자를 통한 객체 생성 */

@@ -35,6 +35,7 @@ public class JoinOk extends BaseController {
 
 	@Override
 	public String doRun(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		// 2. Create Helper + Service Object
 		logger = LogManager.getFormatterLogger(request.getRequestURI());
 		sqlSession = MyBatisConnectionFactory.getSqlSession();
@@ -42,7 +43,12 @@ public class JoinOk extends BaseController {
 		regex = RegexHelper.getInstance();
 		memberService = new MemberServiceImpl(sqlSession, logger);
 
-		// 3. Put the passed parameters in Beans Object
+		// 3. Check for Login
+		if (web.getSession("loginInfo") != null) {
+			web.redirect(web.getRootPath() + "/main.do", "이미 로그인 하셨습니다.");
+		}
+
+		// 4. Put the passed parameters in Beans Object
 		Member member = new Member();
 		member.setUserId(web.getString("user_id"));
 		member.setUserPw(web.getString("user_pw"));
@@ -56,7 +62,7 @@ public class JoinOk extends BaseController {
 		// System.out.println(member.getUserId());
 		// System.out.println(member.getAge());
 
-		// 4. Validate Input
+		// 5. Validate Input
 		// Email
 		if (!regex.isValue(member.getUserId())) {
 			sqlSession.close();
@@ -121,7 +127,7 @@ public class JoinOk extends BaseController {
 			return null;
 		}
 
-		// 5. Database Save Processing through Service
+		// 6. Database Save Processing through Service
 		try {
 			memberService.insertMember(member);
 		} catch (Exception e) {
@@ -130,9 +136,9 @@ public class JoinOk extends BaseController {
 			return null;
 		}
 
-		// 6. Complete Join -> Move Login Page
+		// 7. Complete Join -> Move Login Page
 		sqlSession.close();
-		web.redirect(web.getRootPath() + "/login.do", "회원가입이 완료되었습니다.");
+		web.redirect(web.getRootPath() + "/main.do", "회원가입이 완료되었습니다.");
 
 		return null;
 	}

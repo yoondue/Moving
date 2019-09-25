@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 body {
-	background-image: url("../images/ticket.jpg");
+	background-image: url("${pageContext.request.contextPath}/images/ticket.jpg");
 	background-size: cover;
 	background-repeat: none;
 }
@@ -92,7 +92,7 @@ button:focus {
 					<div class="row">
 						<div class="col-md-1"></div>
 						<div class="col-md-5">
-							<form action="${pageContext.request.contextPath}/login_ok.do"
+							<form action="${pageContext.request.contextPath}/loginOk.do"
 								method="post">
 								<input type="text" placeholder="ÀÌ¸ÞÀÏ(example@gmail.com)"
 									class="loginInfo" name="user_id"> <br> <input
@@ -111,7 +111,7 @@ button:focus {
 					<div class="row">
 						<div class="col-md-1"></div>
 						<div class="col-md-4">
-							<img src="../images/naverLogin.png" id="naverLogin">
+							<img src="${pageContext.request.contextPath}/images/naverLogin.png" id="naverLogin">
 						</div>
 						<div class="col-md-7"></div>
 					</div>

@@ -9,8 +9,8 @@
 	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
 	<resultMap id="member" type="com.dto.Member">
 		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
-		<result property="id" column="id" javaType="java.lang.String"
-			jdbcType="VARCHAR" />
+		<result property="id" column="id" javaType="java.lang.Integer"
+			jdbcType="INTEGER" />
 		<result property="userId" column="user_id"
 			javaType="java.lang.String" jdbcType="VARCHAR" />
 		<result property="userPw" column="user_pw"
@@ -86,8 +86,8 @@
 	<select id="selectLoginInfo" parameterType="com.dto.Member"
 		resultMap="member">
 		SELECT id, user_id, user_pw, nickname, age, gender, genre1,
-		genre2, genre3, reg_date) FROM member WHERE user_id = #{userId} AND
-		user_pw = password(#{userPw}) OREDER BY id DESC LIMIT 0, 1
+		genre2, genre3, reg_date FROM member WHERE user_id = #{userId} AND
+		user_pw = #{userPw}
 	</select>
 
 
