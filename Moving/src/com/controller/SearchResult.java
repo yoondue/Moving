@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -62,7 +63,8 @@ public class SearchResult extends BaseController {
 		// 검색할 장르 movie객체에 넣기
 		switch(genre.length) {
 		case 1:
-			movie.setGenre1(genre[0]);
+			String result = URLDecoder.decode(genre[0], "UTF-8");
+			movie.setGenre1(result);
 			System.out.println(movie.getGenre1());
 			break;
 			

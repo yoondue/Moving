@@ -61,182 +61,33 @@
 				<div class="col-md-1 col-2"></div>
 				
 				<div class="col-md-10 col-8">
-				
-					<c:choose>
-						<c:when test="${fn:length(movieList)>0 }">
-							<c:forEach var="movie" items="${movieList}" varStatus="status">
-								<c:if test="${(status.index %4)==0}">
-									<div class="row">
-								</c:if>
-								<div class="col-md-3">
-									<div class="img-box">
-										<a href="#"><img src="${movie.image}" class="img-thumbnail"></a>
+					<div class="row">
+						<c:choose>
+							<c:when test="${fn:length(movieList)>0 }">
+								<c:forEach var="movie" items="${movieList}" varStatus="status">
+									<div class="col-md-3">
+										<div class="img-box">
+											<a href="#"><img src="${movie.image}" class="img-thumbnail"></a>
+										</div>
+										<div class="span-box">
+											<a href="#"><span class="title">${movie.title}</span></a>
+											<span class="content">${movie.pubDate}・${movie.country}</span>
+											<span class="content">${movie.genre1}</span>
+										</div>						
 									</div>
-									<div class="span-box">
-										<a href="#"><span class="title">${movie.title}</span></a>
-										<span class="content">${movie.pubDate}・${movie.country}</span>
-										<span class="content">${movie.genre1}</span>
-									</div>						
-								</div>
-								<c:if test="${(status.index %4)==0}">	
-									</div>
-								
-								</c:if>
-							</c:forEach>
-						</c:when>
-						<c:otherwise>
-								<tr>
-				           			<td colspan="5" class="text-center" style="line-height: 100px;">조회된 글이 없습니다.</td>
-				        		</tr>
-						</c:otherwise>
-					</c:choose>
-					
-				
-				
-				
-				
-				
-					<div class="row">
-						<div class="col-md-3">
-							<div class="img-box">
-								<a href="#"><img src="/Moving/images/poster2.jpg" class="img-thumbnail"></a>
-							</div>
-							<div class="span-box">
-								<a href="#"><span class="title">겨울왕국</span></a>
-								<span class="content">2013・미국</span>
-								<span class="content">애니메이션・모험・코미디</span>
-							</div>						
-						</div>
-						<div class="col-md-3">
-							<div class="img-box">
-								<a href="#"><img src="/Moving/images/poster2.jpg" class="img-thumbnail"></a>
-							</div>
-							<div class="span-box">
-								<a href="#"><span class="title">겨울왕국</span></a>
-								<span class="content">2013・미국</span>
-								<span class="content">애니메이션・모험・코미디</span>
-							</div>						
-						</div>
-						<div class="col-md-3">
-							<div class="img-box">
-								<a href="#"><img src="/Moving/images/poster2.jpg" class="img-thumbnail"></a>
-							</div>
-							<div class="span-box">
-								<a href="#"><span class="title">겨울왕국</span></a>
-								<span class="content">2013・미국</span>
-								<span class="content">애니메이션・모험・코미디</span>
-							</div>						
-						</div>
-						<div class="col-md-3">
-							<div class="img-box">
-								<a href="#"><img src="/Moving/images/poster2.jpg" class="img-thumbnail"></a>
-							</div>
-							<div class="span-box">
-								<a href="#"><span class="title">겨울왕국</span></a>
-								<span class="content">2013・미국</span>
-								<span class="content">애니메이션・모험・코미디</span>
-							</div>						
-						</div>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+									<tr>
+					           			<td colspan="5" class="text-center" style="line-height: 100px;">조회된 글이 없습니다.</td>
+					        		</tr>
+							</c:otherwise>
+						</c:choose>
 					</div>
-					<div class="row">
-						<div class="col-md-3">
-							<div class="img-box">
-								<a href="#"><img src="/Moving/images/poster2.jpg" class="img-thumbnail"></a>
-							</div>
-							<div class="span-box">
-								<a href="#"><span class="title">겨울왕국</span></a>
-								<span class="content">2013・미국</span>
-								<span class="content">애니메이션・모험・코미디</span>
-							</div>						
-						</div>
-						<div class="col-md-3">
-							<div class="img-box">
-								<a href="#"><img src="/Moving/images/poster2.jpg" class="img-thumbnail"></a>
-							</div>
-							<div class="span-box">
-								<a href="#"><span class="title">겨울왕국</span></a>
-								<span class="content">2013・미국</span>
-								<span class="content">애니메이션・모험・코미디</span>
-							</div>						
-						</div>
-						<div class="col-md-3">
-							<div class="img-box">
-								<a href="#"><img src="/Moving/images/poster2.jpg" class="img-thumbnail"></a>
-							</div>
-							<div class="span-box">
-								<a href="#"><span class="title">겨울왕국</span></a>
-								<span class="content">2013・미국</span>
-								<span class="content">애니메이션・모험・코미디</span>
-							</div>						
-						</div>
-						<div class="col-md-3">
-							<div class="img-box">
-								<a href="#"><img src="/Moving/images/poster2.jpg" class="img-thumbnail"></a>
-							</div>
-							<div class="span-box">
-								<a href="#"><span class="title">겨울왕국</span></a>
-								<span class="content">2013・미국</span>
-								<span class="content">애니메이션・모험・코미디</span>
-							</div>						
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-3">
-							<div class="img-box">
-								<a href="#"><img src="/Moving/images/poster2.jpg" class="img-thumbnail"></a>
-							</div>
-							<div class="span-box">
-								<a href="#"><span class="title">겨울왕국</span></a>
-								<span class="content">2013・미국</span>
-								<span class="content">애니메이션・모험・코미디</span>
-							</div>						
-						</div>
-						<div class="col-md-3">
-							<div class="img-box">
-								<a href="#"><img src="/Moving/images/poster2.jpg" class="img-thumbnail"></a>
-							</div>
-							<div class="span-box">
-								<a href="#"><span class="title">겨울왕국</span></a>
-								<span class="content">2013・미국</span>
-								<span class="content">애니메이션・모험・코미디</span>
-							</div>						
-						</div>
-						<div class="col-md-3">
-							<div class="img-box">
-								<a href="#"><img src="/Moving/images/poster2.jpg" class="img-thumbnail"></a>
-							</div>
-							<div class="span-box">
-								<a href="#"><span class="title">겨울왕국</span></a>
-								<span class="content">2013・미국</span>
-								<span class="content">애니메이션・모험・코미디</span>
-							</div>						
-						</div>
-						<div class="col-md-3">
-							<div class="img-box">
-								<a href="#"><img src="/Moving/images/poster2.jpg" class="img-thumbnail"></a>
-							</div>
-							<div class="span-box">
-								<a href="#"><span class="title">겨울왕국</span></a>
-								<span class="content">2013・미국</span>
-								<span class="content">애니메이션・모험・코미디</span>
-							</div>						
-						</div>
-					</div>
-					
-					<div class="row">
-						
-					</div>
-					
 				</div>
-				
-				<div class="col-md-1 col-2"></div>
-			
-			
-				
-				
 			</div>
+				<div class="col-md-1 col-2"></div>
 		</div>
-		
 	</section>
 
 	<footer>

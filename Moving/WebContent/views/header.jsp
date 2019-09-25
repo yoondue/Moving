@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.net.URLEncoder" %>
+<%
+	String[] genre = {"드라마", "스릴러", "코미디", "액션", "로맨스", "공포",
+						"애니메이션", "범죄", "판타지", "SF", "가족", "뮤지컬"};
+
+	for(int i=0; i<genre.length; i++){
+		genre[i] = URLEncoder.encode(genre[i], "UTF-8");
+	}
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -172,33 +182,33 @@ input[type=checkbox]:checked+label:after {
 						<form action="${pageContext.request.contextPath}/search_result.do"
 							method="get" id="ck_search">
 							<div style="float: left; margin: 0 40px 30px 50px;">
-								<br> <input type="checkbox" name="genre" value="drama"
+								<br> <input type="checkbox" name="genre" value="<%=genre[0] %>"
 									id="chk1"><label for="chk1"></label>드라마<br> <input
-									type="checkbox" name="genre" value="thriller" id="chk2"><label
+									type="checkbox" name="genre" value="<%=genre[1] %>" id="chk2"><label
 									for="chk2"></label>스릴러<br> <input type="checkbox"
-									name="genre" value="comedy" id="chk3"><label for="chk3"></label>코미디<br>
-								<input type="checkbox" name="genre" value="action" id="chk4"><label
+									name="genre" value="<%=genre[2] %>" id="chk3"><label for="chk3"></label>코미디<br>
+								<input type="checkbox" name="genre" value="<%=genre[3] %>" id="chk4"><label
 									for="chk4"></label>액션
 							</div>
 							<div style="float: left; margin: 0 40px 30px 0;">
-								<br> <input type="checkbox" name="genre" value="romance"
+								<br> <input type="checkbox" name="genre" value="<%=genre[4] %>"
 									id="chk5"> <label for="chk5"></label>로맨스<br> <input
-									type="checkbox" name="genre" value="horror" id="chk6"><label
+									type="checkbox" name="genre" value="<%=genre[5] %>" id="chk6"><label
 									for="chk6"></label>공포<br> <input type="checkbox"
-									name="genre" value="animation" id="chk7"><label
+									name="genre" value="<%=genre[6] %>" id="chk7"><label
 									for="chk7"></label>애니메이션<br> <input type="checkbox"
-									name="genre" value="crime" id="chk8"><label for="chk8"></label>범죄<br>
+									name="genre" value="<%=genre[7] %>" id="chk8"><label for="chk8"></label>범죄<br>
 								<br> <br> <input type="submit" value="검색하기"
 									id="searchBtn">
 							</div>
 							<div style="float: left; margin: 0 40px 30px 0;">
-								<br> <input type="checkbox" name="genre" value="fantasy"
+								<br> <input type="checkbox" name="genre" value="<%=genre[8] %>"
 									id="chk9"><label for="chk9"></label> 판타지<br> <input
-									type="checkbox" name="genre" value="sf" id="chk10"><label
+									type="checkbox" name="genre" value="<%=genre[9] %>" id="chk10"><label
 									for="chk10"></label>SF<br> <input type="checkbox"
-									name="genre" value="family" id="chk11"><label
+									name="genre" value="<%=genre[10] %>" id="chk11"><label
 									for="chk11"></label>가족<br> <input type="checkbox"
-									name="genre" value="music" id="chk12"><label
+									name="genre" value="<%=genre[11] %>" id="chk12"><label
 									for="chk12"></label>뮤지컬
 							</div>
 
