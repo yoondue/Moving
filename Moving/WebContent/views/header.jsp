@@ -164,36 +164,36 @@ input[type=checkbox]:checked+label:after {
 						id="menuBox">
 						<p style="padding: 30px 0 0 150px;">장르별&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;평점별</p>
-						<form action="" method="get" id="ck_search">
+						<form action="${pageContext.request.contextPath}/search_result.do" method="post" id="ck_search">
 							<div style="float: left; margin: 0 40px 30px 50px;">
-								<br> <input type="checkbox" name="romance" value="romance"
+								<br> <input type="checkbox" name="genre" value="drama"
 									id="chk1"><label for="chk1"></label>드라마<br> <input
-									type="checkbox" name="romance" value="romance" id="chk2"><label
+									type="checkbox" name="genre" value="thriller" id="chk2"><label
 									for="chk2"></label>스릴러<br> <input type="checkbox"
-									name="romance" value="romance" id="chk3"><label
+									name="genre" value="comedy" id="chk3"><label
 									for="chk3"></label>코미디<br> <input type="checkbox"
-									name="romance" value="romance" id="chk4"><label
+									name="genre" value="action" id="chk4"><label
 									for="chk4"></label>액션
 							</div>
 							<div style="float: left; margin: 0 40px 30px 0;">
-								<br> <input type="checkbox" name="romance" value="romance"
+								<br> <input type="checkbox" name="genre" value="romance"
 									id="chk5"> <label for="chk5"></label>로맨스<br> <input
-									type="checkbox" name="romance" value="romance" id="chk6"><label
+									type="checkbox" name="genre" value="horror" id="chk6"><label
 									for="chk6"></label>공포<br> <input type="checkbox"
-									name="romance" value="romance" id="chk7"><label
+									name="genre" value="animation" id="chk7"><label
 									for="chk7"></label>애니메이션<br> <input type="checkbox"
-									name="romance" value="romance" id="chk8"><label
-									for="chk8"></label>느와르<br> <br> <br> <input
+									name="genre" value="crime" id="chk8"><label
+									for="chk8"></label>범죄<br> <br> <br> <input
 									type="button" value="검색하기" id="searchBtn">
 							</div>
 							<div style="float: left; margin: 0 40px 30px 0;">
-								<br> <input type="checkbox" name="romance" value="romance"
+								<br> <input type="checkbox" name="genre" value="fantasy"
 									id="chk9"><label for="chk9"></label> 판타지<br> <input
-									type="checkbox" name="romance" value="romance" id="chk10"><label
+									type="checkbox" name="genre" value="sf" id="chk10"><label
 									for="chk10"></label>SF<br> <input type="checkbox"
-									name="romance" value="romance" id="chk11"><label
-									for="chk11"></label>다큐멘터리<br> <input type="checkbox"
-									name="romance" value="romance" id="chk12"><label
+									name="genre" value="family" id="chk11"><label
+									for="chk11"></label>가족<br> <input type="checkbox"
+									name="genre" value="music" id="chk12"><label
 									for="chk12"></label>뮤지컬
 							</div>
 

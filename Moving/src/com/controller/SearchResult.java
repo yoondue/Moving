@@ -1,31 +1,27 @@
 package com.controller;
 
 import java.io.IOException;
-import java.net.URLDecoder;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.simple.parser.ParseException;
 
 import com.dao.MyBatisConnectionFactory;
-import com.dto.Movie;
 import com.helper.BaseController;
-import com.helper.MovieHelper;
 import com.helper.WebHelper;
 
 /**
- * Servlet implementation class MovieInfo
+ * Servlet implementation class SearchResult
  */
-@WebServlet("/movie_info.do")
-public class MovieInfo extends BaseController {
+@WebServlet("/search_result.do")
+public class SearchResult extends BaseController {
 
-	private static final long serialVersionUID = 1785522404768678079L;
+	private static final long serialVersionUID = -3278435926387545577L;
 	
 	/** (1) 사용하고자 하는 Helper 객체 선언 */
 	// --> import org.apache.logging.log4j.Logger;
@@ -37,7 +33,7 @@ public class MovieInfo extends BaseController {
 
 	@Override
 	public String doRun(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 		/** (2) 사용하고자 하는 Helper+Service 객체 생성 */
 		// --> import org.apache.logging.log4j.LogManager;
 		logger = LogManager.getFormatterLogger(request.getRequestURI());
@@ -45,29 +41,18 @@ public class MovieInfo extends BaseController {
 		sqlSession = MyBatisConnectionFactory.getSqlSession();
 		web = WebHelper.getInstance(request, response);
 		
-		MovieHelper helper = new MovieHelper();
-		Movie movie = new Movie();
+		String[] genre = web.getStringArray("genre", null);
 		
-		String entitle = web.getString("title");
-		
-		String title = URLDecoder.decode(entitle, "UTF-8");
-		
-		System.out.println("타이틀 : " + title);
-		
-		String jsonResult = helper.movieSelect(title);
-		
-		try {
-//			movie = helper.jsonParser(json);
-			movie = helper.jsonParser(jsonResult);
+		if(genre == null) {
+//			response.sendRedirect(, "입력값이 없습니다.");
 			
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		
-		request.setAttribute("movie", movie);
 		
-		return "movie_info";
+		return "search_result";
 	}
+	
+       
+
 
 }
