@@ -13,11 +13,6 @@ section {
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
-small {
-	float: right;
-	color: gray;
-}
-
 #setProfile {
 	text-decoration: none;
 }
@@ -79,6 +74,11 @@ small {
 .list-group-item {
 	cursor: pointer;
 }
+
+.small {
+	float: right;
+	color: gray;
+}
 </style>
 </head>
 <body>
@@ -115,10 +115,10 @@ small {
 				<nav>
 					<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
 						<a class="nav-item nav-link active" id="nav-home-tab"
-							data-toggle="tab" href="#nav-home" role="tab"
+							data-toggle="tab" href="nav-home" role="tab"
 							aria-controls="nav-home" aria-selected="true">내 리뷰</a> <a
 							class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
-							href="#nav-profile" role="tab" aria-controls="nav-profile"
+							href="nav-profile" role="tab" aria-controls="nav-profile"
 							aria-selected="false">스크랩</a>
 					</div>
 				</nav>
@@ -128,12 +128,11 @@ small {
 						<!-- contents -->
 						<ul class="list-group">
 							<c:forEach var="review" items="${reviewList}">
-								<li class="list-group-item">
-									<strong>${review.movieName}</strong>
-									<small>내 평점: ${review.grade }</small>
-									<br><br>${review.contents }
-									<br><br><small>${review.regDate }</small>
-								</li>
+								<li class="list-group-item"><strong>${review.movieName}</strong>
+									<small class="small">내 평점: ${review.grade }</small> <br>
+								<br>${review.contents } <br>
+								<br>
+								<small class="small">${review.regDate }</small></li>
 							</c:forEach>
 						</ul>
 					</div>
@@ -141,9 +140,12 @@ small {
 						aria-labelledby="nav-profile-tab">
 						<!-- contents -->
 						<ul class="list-group">
-							<li class="list-group-item">First item</li>
-							<li class="list-group-item">Second item</li>
-							<li class="list-group-item">Third item</li>
+							<c:forEach var="scrap" items="${scrapList}">
+								<li class="list-group-item"><strong>${scrap.movieName}</strong>
+									<br>
+								<br>
+								<small>${scrap.regDate }</small></li>
+							</c:forEach>
 						</ul>
 					</div>
 				</div>

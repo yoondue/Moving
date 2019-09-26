@@ -13,17 +13,18 @@ import org.apache.logging.log4j.LogManager;
 
 import com.dao.MyBatisConnectionFactory;
 import com.dto.Member;
-import com.dto.Review;
+import com.dto.Scrap;
 import com.helper.BaseController;
 import com.helper.WebHelper;
 import com.service.ReviewService;
+import com.service.ScrapService;
 import com.service.impl.ReviewServiceImpl;
 
 /**
  * Servlet implementation class MyPage
  */
-@WebServlet("/myPage.do")
-public class MyPage extends BaseController {
+@WebServlet("/my_scrap.do")
+public class MyPageScrap extends BaseController {
 
 	private static final long serialVersionUID = -6154966169325974724L;
 
@@ -31,26 +32,28 @@ public class MyPage extends BaseController {
 	SqlSession sqlSession;
 	WebHelper web;
 	ReviewService reviewService;
+	ScrapService scrapService;
+
 
 	@Override
 	public String doRun(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 2. Create Helper + Service Object
+		System.out.println("!@!$!@#!@#!@#!#@");
 		logger = LogManager.getFormatterLogger(request.getRequestURI());
 		sqlSession = MyBatisConnectionFactory.getSqlSession();
 		web = WebHelper.getInstance(request, response);
 		reviewService = new ReviewServiceImpl(sqlSession, logger);
 
-		// 3. Select My Review List
-		List<Review> myReview = null;
-		Member reviewInfo = new Member();
+		// 3. Select My Scrap List
+		List<Scrap> myScrap = null;
+		Member scrapInfo = new Member();
 
-		reviewInfo = (Member) web.getSession("loginInfo");
+		scrapInfo = (Member) web.getSession("loginInfo");
 
 		try {
-			myReview = reviewService.selectMyReview(reviewInfo);
+			myScrap = scrapService.selectMyScrap(scrapInfo);
 
-			System.out.println("닉네임: " + myReview.get(0).getNickname());
-			System.out.println(myReview.get(0).getContents());
+			System.out.println("!영화이름: " + myScrap.get(0).getMovieName());
 
 		} catch (Exception e) {
 			web.redirect(null, e.getLocalizedMessage());
@@ -60,9 +63,9 @@ public class MyPage extends BaseController {
 		}
 
 		// 4. Pass Query Results to the View
-		request.setAttribute("reviewList", myReview);
+		request.setAttribute("scrapList", myScrap);
 
-		return "my_page";
+		return "my_page_scrap";
 	}
 
 }

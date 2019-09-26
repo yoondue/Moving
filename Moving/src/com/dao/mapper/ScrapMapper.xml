@@ -16,5 +16,15 @@
 
 	</resultMap>
 
+	<select id="selectMyScrap" parameterType="com.dto.Scrap"
+		resultMap="scrap">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+		SELECT
+		s.movie_name, s.reg_date
+		FROM scrap s, member m
+		WHERE
+		s.member_id=m.id AND m.id = #{id}
+	</select>
+
 
 </mapper>

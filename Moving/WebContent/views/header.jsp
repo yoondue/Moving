@@ -126,7 +126,7 @@ input[type=checkbox]:checked+label:after {
 	background-color: #61656A;
 }
 
-#user {
+#search, #user {
 	cursor: pointer;
 }
 
@@ -162,7 +162,7 @@ input[type=checkbox]:checked+label:after {
 
 	<nav id="#fixed"
 		class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-		<a class="navbar-brand" href="#"><img
+		<a class="navbar-brand" href="${pageContext.request.contextPath}/main.do"><img
 			src="/Moving/images/logo.png" id="logo"></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
@@ -230,7 +230,7 @@ input[type=checkbox]:checked+label:after {
 							method="get" id="name_search">
 				<input type="text" placeholder="검색어를 입력하세요." name="keyword">
 				<button type="submit">
-					<i class="fa fa-search"></i>
+					<i class="fa fa-search" id="search"></i>
 				</button>
 				<c:choose>
 					<c:when test="${loginInfo == null}">
@@ -247,7 +247,7 @@ input[type=checkbox]:checked+label:after {
 							<ul class="dropdown-menu" id="loginDropDownMenu">
 								<li><a href="${pageContext.request.contextPath}/logout.do">
 										로그아웃</a></li>
-								<li><a href="${pageContext.request.contextPath}/myPage.do">
+								<li><a href="${pageContext.request.contextPath}/my_review.do">
 										마이페이지</a></li>
 								<li><a href="${pageContext.request.contextPath}/out.do">
 										회원탈퇴</a></li>
