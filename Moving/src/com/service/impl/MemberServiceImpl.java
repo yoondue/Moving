@@ -127,4 +127,22 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
+	@Override
+	public void updateMemberPassword(Member member) throws Exception {
+		try {
+			int result = sqlSession.update("MemberMapper.updateMemberPassword", member);
+
+			if (result == 0) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			throw new Exception("가입된 이메일이 아닙니다.");
+		} catch (Exception e) {
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("비밀번호 변경에 실패하였습니다.");
+		} finally {
+			sqlSession.commit();
+		}
+
+	}
 }

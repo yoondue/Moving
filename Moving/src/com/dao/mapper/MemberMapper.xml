@@ -90,5 +90,9 @@
 		user_pw = #{userPw}
 	</select>
 
+	<!-- Find Password -->
+	<update id="updateMemberPassword" parameterType="com.dto.Member">
+		UPDATE member SET user_pw = #{userPw} WHERE user_id = #{userId}
+	</update>
 
 </mapper>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 body {
-	background-image: url("../images/ticket.jpg");
+	background-image: url("${pageContext.request.contextPath }/images/ticket.jpg");
 	background-size: cover;
 	background-repeat: none;
 }
@@ -85,8 +86,10 @@ button:focus {
 					<div class="row">
 						<div class="col-md-1"></div>
 						<div class="col-md-5">
-							<form action="main.jsp" method="get">
-								<br> <input type="text"
+							<form name="myform"
+								action="${pageContext.request.contextPath }/find_pw_ok.do"
+								method="post">
+								<br> <input type="text" name="email"
 									placeholder="ÀÌ¸ÞÀÏ(example@gmail.com)" class="loginInfo">
 								<br>
 								<p id="findPwComment">

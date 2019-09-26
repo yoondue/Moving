@@ -21,5 +21,8 @@ public interface MemberService {
 	
 	// LoginPage's login
 	public Member selectLoginInfo(Member member) throws Exception;
+	
+	// Find Password's update pw
+	public void updateMemberPassword(Member member) throws Exception;
 
 }
