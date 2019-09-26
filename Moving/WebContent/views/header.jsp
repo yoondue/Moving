@@ -226,9 +226,9 @@ input[type=checkbox]:checked+label:after {
 						</form>
 					</div></li>
 			</ul>
-			<form class="search" action="${pageContext.request.contextPath}/search_result.do"
-							method="get" id="ck_search">
-				<input type="text" placeholder="검색어를 입력하세요.">
+			<form class="search" action="${pageContext.request.contextPath}/search_name_result.do"
+							method="get" id="name_search">
+				<input type="text" placeholder="검색어를 입력하세요." name="keyword">
 				<button type="submit">
 					<i class="fa fa-search"></i>
 				</button>
