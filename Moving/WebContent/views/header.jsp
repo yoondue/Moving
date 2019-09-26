@@ -213,20 +213,21 @@ input[type=checkbox]:checked+label:after {
 							</div>
 
 							<div style="float: right; margin: 0 80px 30px 50px;">
-								<br> <input type="checkbox" name="lowStar" value="lowStar"><label
-									for="chk13"></label>0.0~2.0 <br> <input type="checkbox"
-									name="middleStar" value="middleStar"><label for="chk14"></label>2.1~3.0
-								<br> <input type="checkbox" name="highStar"
-									value="highStar"><label for="chk15"></label>3.1~4.0 <br>
-								<input type="checkbox" name="topStar" value="topStar"><label
-									for="chk16"></label>4.1~5.0<br> <br> <br> <input
+								<br> <input type="checkbox" name="star" value="9" id="chk13"><label
+									for="chk13"></label>9점 이상 <br> <input type="checkbox"
+									name="star" value="8"  id="chk14"><label for="chk14"></label>8점 이상
+								<br> <input type="checkbox" name="star"
+									value="7" id="chk15"><label for="chk15"></label>7점 이상 <br>
+								<input type="checkbox" name="star" value="6"  id="chk16"><label
+									for="chk16"></label>6점 이상<br> <br> <br> <input
 									type="button" value="닫기" id="searchExitBtn">
 							</div>
 
 						</form>
 					</div></li>
 			</ul>
-			<form class="search">
+			<form class="search" action="${pageContext.request.contextPath}/search_result.do"
+							method="get" id="ck_search">
 				<input type="text" placeholder="검색어를 입력하세요.">
 				<button type="submit">
 					<i class="fa fa-search"></i>

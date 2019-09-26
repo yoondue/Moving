@@ -27,7 +27,8 @@
 		SELECT
 			movie_name, genre1, genre2, genre3, year, country, grade, movie_img
 		FROM movie
-		WHERE genre1 = #{genre1} OR genre2 = #{genre1} OR genre3 = #{genre1}
+		WHERE (genre1 = #{genre1} OR genre2 = #{genre1} OR genre3 = #{genre1})
+			AND grade >= #{grade}
 		ORDER BY id ASC
 	</select>
 	
@@ -38,8 +39,9 @@
 		SELECT
 			movie_name, genre1, genre2, genre3, year, country, grade, movie_img
 		FROM movie
-		WHERE genre1 = #{genre1} OR genre2 = #{genre1} OR genre3 = #{genre1}
-			OR genre1 = #{genre2} OR genre2 = #{genre2} OR genre3 = #{genre2}
+		WHERE (genre1 = #{genre1} OR genre2 = #{genre1} OR genre3 = #{genre1}
+			OR genre1 = #{genre2} OR genre2 = #{genre2} OR genre3 = #{genre2})
+			AND grade >= #{grade}
 		ORDER BY id ASC
 	</select>
 
@@ -50,9 +52,10 @@
 		SELECT
 			movie_name, genre1, genre2, genre3, year, country, grade, movie_img
 		FROM movie
-		WHERE genre1 = #{genre1} OR genre2 = #{genre1} OR genre3 = #{genre1}
+		WHERE (genre1 = #{genre1} OR genre2 = #{genre1} OR genre3 = #{genre1}
 			OR genre1 = #{genre2} OR genre2 = #{genre2} OR genre3 = #{genre2}
-			OR genre1 = #{genre3} OR genre2 = #{genre3} OR genre3 = #{genre3}
+			OR genre1 = #{genre3} OR genre2 = #{genre3} OR genre3 = #{genre3})
+			AND grade >= #{grade}
 		ORDER BY id ASC
 	</select>
 	

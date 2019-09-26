@@ -13,7 +13,7 @@ public class Movie {
 	String genre1;
 	String genre2;
 	String genre3;
-	String grade;
+	float grade;
 	
 	public String getTitle() {
 		return title;
@@ -82,26 +82,24 @@ public class Movie {
 	public void setGenre3(String genre3) {
 		this.genre3 = genre3;
 	}
-	public String getGrade() {
-		return grade;
-	}
-	public void setGrade(String grade) {
-		this.grade = grade;
-	}
-	
 	public String getGenre() {
 		return genre;
 	}
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
+	public float getGrade() {
+		return grade;
+	}
+	public void setGrade(float grade) {
+		this.grade = grade;
+	}
+	
 	@Override
 	public String toString() {
 		return "Movie [id=" + id + ", title=" + title + ", pubDate=" + pubDate + ", image=" + image + ", contents="
 				+ contents + ", director=" + director + ", actor=" + actor + ", country=" + country + ", genre=" + genre
 				+ ", genre1=" + genre1 + ", genre2=" + genre2 + ", genre3=" + genre3 + ", grade=" + grade + "]";
 	}
-
-	
 
 }

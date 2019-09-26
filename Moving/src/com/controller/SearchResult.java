@@ -54,9 +54,34 @@ public class SearchResult extends BaseController {
 		
 		String[] genre = web.getStringArray("genre", null);
 		
-		if(genre.length <= 0) {
-			web.redirect(null, "입력값이 없습니다.");
+		String[] stars = web.getStringArray("star", null);
+		
+		for(int i=0; i<stars.length; i++) {
+			System.out.println("별점 : " + stars[i]);
 		}
+		System.out.println("if문 전 별점 : " + stars[0]);
+		
+
+		if(stars.length <= 0 || genre.length <= 0) {
+			web.redirect(null, "검색 조건을 선택해주세요.");
+		}
+		
+		// 평점 9점 이상 선택했을때
+		if(stars[0].equals("9")) {
+			movie.setGrade(9.0F);
+		}
+		else if(stars[0].equals("8")) {
+			movie.setGrade(8.0F);
+		}
+		else if(stars[0].equals("7")) {
+			movie.setGrade(7.0F);
+		}
+		else if(stars[0].equals("6")) {
+			movie.setGrade(6.0F);
+		}
+		
+		System.out.println("평점 : " + movie.getGrade());
+		
 		
 		// 검색할 장르 movie객체에 넣기
 		if(genre.length == 1) {
@@ -82,7 +107,7 @@ public class SearchResult extends BaseController {
 		List<Movie> movieList = null;
 		
 		try {
-			// 체크한 장르가 하나일때
+			// 체크한 장르가 하나일 때
 			if(genre.length == 1) {
 				movieList = movieService.selectGenreOne(movie);
 			}
