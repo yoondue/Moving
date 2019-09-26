@@ -20,7 +20,8 @@ import org.jsoup.select.Elements;
 
 public class MovieHelper{
 	
-	public String movieSelect(String keyword) {
+	// 키워드와 결과 개수를 입력받아서 json으로 결과 받기
+	public String movieSelect(String keyword, int result) {
 		
 		String json = null;
 		
@@ -29,8 +30,7 @@ public class MovieHelper{
 		
 		try {
 			String text = URLEncoder.encode(keyword, "UTF-8");
-			int num = 5;
-			String apiURL = "https://openapi.naver.com/v1/search/movie?query=" + text + "&display=" + num;
+			String apiURL = "https://openapi.naver.com/v1/search/movie?query=" + text + "&display=" + result;
 
 			// String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; //xml
 			BufferedReader br;
@@ -66,6 +66,7 @@ public class MovieHelper{
 		return json;
 	}
 	
+	// 하나의 영화 정보 조회
 	public Movie jsonParser(String json) throws ParseException {
 		
 		Movie movie = new Movie();
@@ -75,36 +76,27 @@ public class MovieHelper{
 
 		JSONArray item = (JSONArray) obj.get("items");
 
-		//System.out.println(obj.toJSONString());
-		//System.out.println(item.toJSONString());
-		
 		for (int i = 0; i < item.size(); i++) {
 			JSONObject tmp = (JSONObject) item.get(i);
 			movie.setTitle((String) tmp.get("title"));
 			movie.setPubDate((String) tmp.get("pubDate"));
-			movie.setImage((String) tmp.get("image"));
 			
 			String director = ((String) tmp.get("director")).replace("|", "");
 			movie.setDirector(director);
 			
-			String actor = ((String) tmp.get("actor")).replace("|", ",");
+			String actor = ((String) tmp.get("actor")).replace("|", ", ");
 			
 			if(actor.length()>0) {
 				actor = actor.substring(0, actor.length()-1);
 			}
 			
-//			actor = actor.substring(0, actor.length()-1);
 			movie.setActor(actor);
 			
 			String url = (String) tmp.get("link");
 			Document doc = null;
 
 			try {
-				doc = Jsoup.connect(url)
-						// .header("query", "라푼젤")
-						// .header("section", "all")
-						// .header("ie", "utf-8")
-						.get();
+				doc = Jsoup.connect(url).get();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -112,20 +104,32 @@ public class MovieHelper{
 			Elements element = doc.select("div.story_area");
 			String contents = element.select("p").text();
 
-			Elements element2 = doc.select("p.info_spec");
+//			Elements element2 = doc.select("p.info_spec");
+			Elements element2 = doc.select("dl.info_spec .step1").next();
 			String genre = element2.select("span:first-child").text();
 
-			Elements element3 = doc.select("p.info_spec");
+//			Elements element3 = doc.select("p.info_spec");
+			Elements element3 = doc.select("dl.info_spec .step1").next();
 			String country = element3.select("span:nth-child(2)").text();
+			
+			Elements element4 = doc.select(".mv_info_area");
+			String image = element4.select(".poster a img").attr("src");
+			
+			if(image.equals("")) {
+				
+				image = "/Moving/images/movie1.jpg";
+			}
 
 			movie.setCountry(country);
 			movie.setGenre(genre);
 			movie.setContents(contents);
+			movie.setImage(image);
 			
 		}
 		return movie;
 	}
 	
+	// list로 된 영화 정보 조회
 	public List<Movie> jsonParserList(String json) throws ParseException {
 		
 		List<Movie> movieList = new ArrayList<Movie>();
@@ -135,22 +139,23 @@ public class MovieHelper{
 
 		JSONArray item = (JSONArray) obj.get("items");
 
-		//System.out.println(obj.toJSONString());
-		//System.out.println(item.toJSONString());
-		
 		for (int i = 0; i < item.size(); i++) {
 			
 			Movie movie = new Movie();
 			
 			JSONObject tmp = (JSONObject) item.get(i);
-			movie.setTitle((String) tmp.get("title"));
+			
+			// 영화 제목의 <b>태그 제거
+			String title = (String) tmp.get("title");
+			title = title.replace("<b>", "").replace("</b>", "");
+			movie.setTitle(title);
+			
 			movie.setPubDate((String) tmp.get("pubDate"));
-			movie.setImage((String) tmp.get("image"));
 			
 			String director = ((String) tmp.get("director")).replace("|", "");
 			movie.setDirector(director);
 			
-			String actor = ((String) tmp.get("actor")).replace("|", ",");
+			String actor = ((String) tmp.get("actor")).replace("|", ", ");
 			
 			if(actor.length()>0) {
 				actor = actor.substring(0, actor.length()-1);
@@ -162,11 +167,7 @@ public class MovieHelper{
 			Document doc = null;
 
 			try {
-				doc = Jsoup.connect(url)
-						// .header("query", "라푼젤")
-						// .header("section", "all")
-						// .header("ie", "utf-8")
-						.get();
+				doc = Jsoup.connect(url).get();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -174,15 +175,30 @@ public class MovieHelper{
 			Elements element = doc.select("div.story_area");
 			String contents = element.select("p").text();
 
-			Elements element2 = doc.select("p.info_spec");
+//			Elements element2 = doc.select("p.info_spec");
+//			String genre = element2.select("span:first-child").text();
+//
+//			Elements element3 = doc.select("p.info_spec");
+//			String country = element3.select("span:nth-child(2)").text();
+			
+			Elements element2 = doc.select("dl.info_spec .step1").next();
 			String genre = element2.select("span:first-child").text();
-
-			Elements element3 = doc.select("p.info_spec");
+			
+			Elements element3 = doc.select("dl.info_spec .step1").next();
 			String country = element3.select("span:nth-child(2)").text();
+			
+			Elements element4 = doc.select(".mv_info_area");
+			String image = element4.select(".poster a img").attr("src");
+			
+			if(image.equals("")) {
+				
+				image = "/Moving/images/movie1.jpg";
+			}
 
 			movie.setCountry(country);
 			movie.setGenre(genre);
 			movie.setContents(contents);
+			movie.setImage(image);
 			
 			movieList.add(movie);
 			

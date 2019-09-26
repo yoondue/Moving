@@ -40,6 +40,11 @@
 	a:visited {text-decoration:none; color:#646464;}
 	a:active {text-decoration:none; color:#646464;}
 	a:hover {text-decoration:none; color:#646464;}
+	
+	.img-thumbnail{
+		width: 100%;
+		height: 300px;
+	}
 
 </style>
 
@@ -67,7 +72,7 @@
 								<c:forEach var="movie" items="${movieList}" varStatus="status">
 									<div class="col-md-3">
 										<div class="img-box">
-											<a href="#"><img src="${movie.image}" class="img-thumbnail"></a>
+											<a href="${pageContext.request.contextPath}/movie_info.do?title=${movie.title}"><img src="${movie.image}" class="img-thumbnail"></a>
 										</div>
 										<div class="span-box">
 											<a href="#"><span class="title">${movie.title}</span></a>
