@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
       pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
       
 <jsp:include page="header.jsp" />
 <!DOCTYPE html>
@@ -123,92 +124,41 @@
 				</div>
 
 				<div class="col-md-8">
-					<div class="review">
-						<div class="row writer">
-							<div class="col-md-10 col-9">
-								<img src="/Moving/images/profile1.jpg" class="rounded-circle">
-								<div class="nickname">
-									<span>이동진 평론가</span>
+					<c:forEach var="review" items="${reviewList }">
+						<div class="review">
+							<div class="row writer">
+								<div class="col-md-10 col-9">
+									<img src="${review.profileImg }" class="rounded-circle">
+									<div class="nickname">
+										<span>${review.nickname}</span>
+									</div>
+								</div>
+								
+								<div class="col-md-2 col-3">
+									<div class="star-box">
+									<img src="/Moving/images/star2.png" class="star"> <span>${review.grade }</span>
+									</div>
 								</div>
 							</div>
+							<hr>
+							<div class="row review-content">
+								<span>${review.contents }</span>
+							</div>
+							<hr>
 							
-							<div class="col-md-2 col-3">
-								<div class="star-box">
-								<img src="/Moving/images/star.png" class="star"> <span>4.0</span>
-								</div>
+							<div class="row like">
+								<img src="/Moving/images/thumbs-up.png" class="thumbs-up">
+								<span class="like-span">${review.likeCount }</span>
+								<button type="submit" class="btn btn-light like-btn">좋아요</button>
 							</div>
 						</div>
-						<hr>
-						<div class="row review-content">
-							<span>연출과 연기보다는 기획과 제작의 힘.연출과 연기보다는 기획과 제작의 힘.연출과 연기보다는
-								기획과 제작의 힘. 연출과 연기보다는 기획과 제작의 힘.</span>
-						</div>
-						<hr>
-						
-						<div class="row like">
-							<img src="/Moving/images/thumbs-up.png" class="thumbs-up">
-							<span class="like-span">554</span>
-							<button type="submit" class="btn btn-light like-btn">좋아요</button>
-						</div>
-					</div>
-					<div class="review">
-						<div class="row writer">
-							<div class="col-md-10 col-9">
-								<img src="/Moving/images/profile2.jpg" class="rounded-circle">
-							<div class="nickname">
-								<span>제시</span>
-							</div>
-							</div>
-							
-							<div class="col-md-2 col-3">
-								<div class="star-box">
-								<img src="/Moving/images/star.png" class="star"> <span>5.0</span>
-							</div>
-							</div>
-						</div>
-						<hr>
-						<div class="row review-content">
-							<span>누가 뭐래도 나를 울린건 자베르의 거칠고 투박하지만 진정성 있는 목소리.</span>
-						</div>
-						<hr>
-						
-						<div class="row like">
-							<img src="/Moving/images/thumbs-up.png" class="thumbs-up">
-							<span class="like-span">32</span>
-							<button type="submit" class="btn btn-light like-btn">좋아요</button>
-						</div>
-					</div>
-					<div class="review">
-						<div class="row writer">
-							<div class="col-md-10 col-9">
-								<img src="/Moving/images/profile2.jpg" class="rounded-circle">
-							<div class="nickname">
-								<span>제시</span>
-							</div>
-							</div>
-							
-							<div class="col-md-2 col-3">
-								<div class="star-box">
-								<img src="/Moving/images/star.png" class="star"> <span>5.0</span>
-							</div>
-							</div>
-						</div>
-						<hr>
-						<div class="row review-content">
-							<span>누가 뭐래도 나를 울린건 자베르의 거칠고 투박하지만 진정성 있는 목소리.</span>
-						</div>
-						<hr>
-						
-						<div class="row like">
-							<img src="/Moving/images/thumbs-up.png" class="thumbs-up">
-							<span class="like-span">32</span>
-							<button type="submit" class="btn btn-light like-btn">좋아요</button>
-						</div>
-					</div>
 					
 					
-
 					
+					</c:forEach>
+				
+				
+				
 				</div>
 
 				<div class="col-md-2">

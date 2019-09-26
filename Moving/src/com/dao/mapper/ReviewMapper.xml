@@ -17,11 +17,12 @@
 		<result property="likeCount" column="like_count" />
 		<result property="regDate" column="reg_date" />
 		<result property="memberId" column="member_id" />
+		<result property="nickname" column="nickname" />
+		<result property="profileImg" column="profile_img" />
 	</resultMap>
 
 	<select id="selectReviewList" parameterType="com.dto.Review"
 		resultMap="review">
-		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
 		SELECT
 		r.id, m.nickname, r.movie_name, r.grade, r.contents,
 		r.like_count,
@@ -34,7 +35,6 @@
 
 	<select id="selectMyReview" parameterType="com.dto.Review"
 		resultMap="review">
-		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
 		SELECT
 		r.id, m.nickname, r.movie_name, r.grade, r.contents,
 		r.like_count,
@@ -42,6 +42,23 @@
 		FROM review r, member m
 		WHERE
 		r.member_id=m.id AND m.id = #{id}
+	</select>
+	
+	<select id="selectMovieReviewList" parameterType="com.dto.Review"
+		resultMap="review">
+		SELECT
+		r.id, r.movie_name, r.grade, r.contents, r.like_count, r.reg_date, r.member_id,
+		m.nickname, m.profile_img
+		FROM review r, member m
+		WHERE r.member_id=m.id AND movie_name = #{title}
+		ORDER BY like_count DESC
+	</select>
+	
+	<select id="selectReviewGrade" parameterType="com.dto.Review"
+		resultMap="review">
+		SELECT AVG(grade) AS grade
+		FROM review
+		WHERE movie_name = #{title}
 	</select>
 
 </mapper>

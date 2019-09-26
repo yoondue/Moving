@@ -180,9 +180,10 @@
 							<h3>${movie.title }</h3>
 							<span>${movie.pubDate }</span><span>・</span><span>${movie.genre }</span>
 							<hr>
-							<span>평점 ★4.0 (79명)</span>
+							<span>평점 ★${review.grade }</span>
 							<hr>
-							<button type="submit" class="btn">리뷰 쓰기</button>
+							<button type="submit" class="btn" id="addReview">리뷰 쓰기</button>
+							<button type="submit" class="btn" id="addScrap">스크랩</button>
 						</div>
 						
 					</div>
@@ -214,69 +215,71 @@
 									<h5 class="co-title">코멘트</h5>
 								</div>
 								<div class="col-md-2 col-3 more-box">
-									<a href="#" class="btn btn-light like-btn more" style="color:#894242">더보기</a>						
+									<a href="${pageContext.request.contextPath}/movie_review_list.do?title=${movie.title }" class="btn btn-light like-btn more" style="color:#894242">더보기</a>						
 								</div>
 							</div>
 							
 							<div class="row">
+								<c:forEach var="review" items="${reviewList }" begin="0" end="1">
 								<div class="col-md-6">
 									<div class="review">
-										<div class="writer">
-											<img src="/Moving/images/profile1.jpg" class="rounded-circle">
-											<div class="nickname">
-												<span>이동진 평론가</span>
-											</div>
-											
-<!-- 											span글씨 조정하려고 simg-box, star-sapn div 생성 -->
-											<div class="star-box">
-												<div class="simg-box">
-													<img src="/Moving/images/star2.png" class="star">
-												
-												</div>
-												<div class="star-span">
-													<span>4.0</span>
+											<div class="writer">
+												<img src="${review.profileImg }" class="rounded-circle">
+												<div class="nickname">
+													<span>${review.nickname }</span>
 												</div>
 												
+	<!-- 											span글씨 조정하려고 simg-box, star-sapn div 생성 -->
+												<div class="star-box">
+													<div class="simg-box">
+														<img src="/Moving/images/star2.png" class="star">
+													
+													</div>
+													<div class="star-span">
+														<span>${review.grade }</span>
+													</div>
+													
+												</div>
 											</div>
-										</div>
-										<hr>
-										<div class="review-content">
-											<span>연출과 연기보다는 기획과 제작의 힘.연출과 연기보다는 기획과 제작의 힘.연출과 연기보다는 기획과 제작의 힘.
-											연출과 연기보다는 기획과 제작의 힘.</span>
-										</div>
-										<hr>
-										<div class="like">
-												<img src="/Moving/images/thumbs-up.png" class="thumbs-up">
-												<span class="like-span">554</span>
-												<button type="submit" class="btn btn-light like-btn">좋아요</button>
-										</div>
+											<hr>
+											<div class="review-content">
+												<span>${review.contents }</span>
+											</div>
+											<hr>
+											<div class="like">
+													<img src="/Moving/images/thumbs-up.png" class="thumbs-up">
+													<span class="like-span">${review.likeCount }</span>
+													<button type="submit" class="btn btn-light like-btn">좋아요</button>
+											</div>
+									
 									</div>
 								</div>
+								</c:forEach>
 								
-								<div class="col-md-6">
-									<div class="review">
-										<div class="writer">
-											<img src="/Moving/images/profile2.jpg" class="rounded-circle">
-											<div class="nickname">
-												<span>제시</span>
-											</div>
-											<div class="star-box">
-												<img src="/Moving/images/star2.png" class="star">
-												<span>5.0</span>
-											</div>
-										</div>
-										<hr>
-										<div class="review-content">
-											<span>누가 뭐래도 나를 울린건 자베르의 거칠고 투박하지만 진정성 있는 목소리.</span>
-										</div>
-										<hr>
-										<div class="like">
-											<img src="/Moving/images/thumbs-up.png" class="thumbs-up">
-											<span class="like-span">32</span>
-											<button type="submit" class="btn btn-light like-btn">좋아요</button>
-										</div>
-									</div>
-								</div>
+<!-- 								<div class="col-md-6"> -->
+<!-- 									<div class="review"> -->
+<!-- 										<div class="writer"> -->
+<!-- 											<img src="/Moving/images/profile2.jpg" class="rounded-circle"> -->
+<!-- 											<div class="nickname"> -->
+<!-- 												<span>제시</span> -->
+<!-- 											</div> -->
+<!-- 											<div class="star-box"> -->
+<!-- 												<img src="/Moving/images/star2.png" class="star"> -->
+<!-- 												<span>5.0</span> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
+<!-- 										<hr> -->
+<!-- 										<div class="review-content"> -->
+<!-- 											<span>누가 뭐래도 나를 울린건 자베르의 거칠고 투박하지만 진정성 있는 목소리.</span> -->
+<!-- 										</div> -->
+<!-- 										<hr> -->
+<!-- 										<div class="like"> -->
+<!-- 											<img src="/Moving/images/thumbs-up.png" class="thumbs-up"> -->
+<!-- 											<span class="like-span">32</span> -->
+<!-- 											<button type="submit" class="btn btn-light like-btn">좋아요</button> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
 							
 							</div>
 						</div>

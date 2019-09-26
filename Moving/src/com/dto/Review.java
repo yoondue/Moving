@@ -5,12 +5,13 @@ import java.sql.Date;
 public class Review {
 	int id; // SEQUENCE RV_SEQ
 	String movieName;
-	int grade;
+	float grade;
 	String contents;
 	int likeCount;
 	Date regDate;
 	int memberId;
 	String nickname;
+	String profileImg;
 
 	public int getId() {
 		return id;
@@ -28,11 +29,11 @@ public class Review {
 		this.movieName = movieName;
 	}
 
-	public int getGrade() {
+	public float getGrade() {
 		return grade;
 	}
 
-	public void setGrade(int grade) {
+	public void setGrade(float grade) {
 		this.grade = grade;
 	}
 
@@ -75,12 +76,21 @@ public class Review {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
+	
+	public String getProfileImg() {
+		return profileImg;
+	}
+
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
+	}
 
 	@Override
 	public String toString() {
 		return "Review [id=" + id + ", movieName=" + movieName + ", grade=" + grade + ", contents=" + contents
 				+ ", likeCount=" + likeCount + ", regDate=" + regDate + ", memberId=" + memberId + ", nickname="
-				+ nickname + "]";
+				+ nickname + ", profileImg=" + profileImg + "]";
 	}
+
 
 }

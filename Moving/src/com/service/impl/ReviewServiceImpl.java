@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.Logger;
 
 import com.dto.Member;
+import com.dto.Movie;
 import com.dto.Review;
 import com.service.ReviewService;
 
@@ -25,7 +26,7 @@ public class ReviewServiceImpl implements ReviewService {
 		this.logger = logger;
 	}
 
-	// 리뷰 목록 조회
+	// 리뷰 전체 목록 조회
 	@Override
 	public List<Review> selectReviewList() throws Exception {
 
@@ -68,6 +69,51 @@ public class ReviewServiceImpl implements ReviewService {
 			throw new Exception("리뷰 목록 조회에 실패했습니다.");
 		}
 
+		return result;
+	}
+
+	// 영화별 리뷰 조회
+	@Override
+	public List<Review> selectMovieReviewList(Movie movie) throws Exception {
+		List<Review> result = null;
+		
+		try {
+			result = sqlSession.selectList("ReviewMapper.selectMovieReviewList", movie);
+
+			if (result == null) {
+				throw new NullPointerException();
+			}
+
+		} catch (NullPointerException e) {
+			sqlSession.rollback();
+			throw new Exception("조회된 리뷰 목록이 없습니다.");
+		} catch (Exception e) {
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("리뷰 목록 조회에 실패했습니다.");
+		}
+		
+		return result;
+	}
+
+	@Override
+	public Review selectReviewGrade(Movie movie) throws Exception {
+		
+		Review result = null;
+		
+		try {
+			result = sqlSession.selectOne("ReviewMapper.selectReviewGrade", movie);
+			if (result == null) {
+				throw new NullPointerException();
+			}
+
+		} catch (NullPointerException e) {
+			sqlSession.rollback();
+			throw new Exception("조회된 리뷰 목록이 없습니다.");
+		} catch (Exception e) {
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("리뷰 목록 조회에 실패했습니다.");
+		}
+		
 		return result;
 	}
 

@@ -78,7 +78,12 @@ public class MovieHelper{
 
 		for (int i = 0; i < item.size(); i++) {
 			JSONObject tmp = (JSONObject) item.get(i);
-			movie.setTitle((String) tmp.get("title"));
+
+			// 영화 제목의 <b>태그 제거
+			String title = (String) tmp.get("title");
+			title = title.replace("<b>", "").replace("</b>", "");
+			movie.setTitle(title);
+			
 			movie.setPubDate((String) tmp.get("pubDate"));
 			
 			String director = ((String) tmp.get("director")).replace("|", "");
