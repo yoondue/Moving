@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,12 +13,25 @@ section {
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
+small {
+	float: right;
+	color: gray;
+}
+
 #setProfile {
 	text-decoration: none;
 }
 
+#myNick {
+	color: #894242;
+}
+
+#changeNick {
+	color: #808080;
+}
+
 #separate {
-	height: 20px;
+	height: 30px;
 }
 
 .background {
@@ -73,16 +87,16 @@ section {
 		<div class="background">
 			<div class="row" id="separate"></div>
 			<div class="row">
-				<div class="col-md-1"></div>
+				<div class="col-md-1" id="separate"></div>
 				<div class="col-md-2">
 					<div class="circle">
 						<!-- User Profile Image -->
 						<img class="profile-pic" src="">
 					</div>
 				</div>
-				<div class="col-md-9" style="">
-					<h4>닉네임</h4>
-					<small>닉네임 변경</small>
+				<div class="col-md-9">
+					<h4 id="myNick">${loginInfo.nickname}</h4>
+					<small id="changeNick">닉네임 변경</small>
 				</div>
 			</div>
 			<div class="row" id="separate"></div>
@@ -113,9 +127,14 @@ section {
 						role="tabpanel" aria-labelledby="nav-home-tab">
 						<!-- contents -->
 						<ul class="list-group">
-							<li class="list-group-item">First item</li>
-							<li class="list-group-item">Second item</li>
-							<li class="list-group-item">Third item</li>
+							<c:forEach var="review" items="${reviewList}">
+								<li class="list-group-item">
+									<strong>${review.movieName}</strong>
+									<small>내 평점: ${review.grade }</small>
+									<br><br>${review.contents }
+									<br><br><small>${review.regDate }</small>
+								</li>
+							</c:forEach>
 						</ul>
 					</div>
 					<div class="tab-pane fade" id="nav-profile" role="tabpanel"

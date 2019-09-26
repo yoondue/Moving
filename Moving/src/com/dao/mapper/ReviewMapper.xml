@@ -9,26 +9,39 @@
 	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
 	<resultMap id="review" type="com.dto.Review">
 		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
-		<result property="id" column="id" />
+		<result property="id" column="id" javaType="java.lang.Integer"
+			jdbcType="INTEGER" />
 		<result property="movieName" column="movie_name" />
 		<result property="grade" column="grade" />
 		<result property="contents" column="contents" />
 		<result property="likeCount" column="like_count" />
 		<result property="regDate" column="reg_date" />
 		<result property="memberId" column="member_id" />
-
 	</resultMap>
 
-	<select id="selectReviewList"
-		parameterType="com.dto.Review"
-	 	resultMap="review">
+	<select id="selectReviewList" parameterType="com.dto.Review"
+		resultMap="review">
 		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
 		SELECT
-			r.id, m.nickname, r.movie_name, r.grade, r.contents, r.like_count, r.reg_date, r.member_id
+		r.id, m.nickname, r.movie_name, r.grade, r.contents,
+		r.like_count,
+		r.reg_date, r.member_id
 		FROM review r, member m
-		WHERE r.member_id=m.id
+		WHERE
+		r.member_id=m.id
 		ORDER BY id ASC
 	</select>
-	
+
+	<select id="selectMyReview" parameterType="com.dto.Review"
+		resultMap="review">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+		SELECT
+		r.id, m.nickname, r.movie_name, r.grade, r.contents,
+		r.like_count,
+		r.reg_date, r.member_id
+		FROM review r, member m
+		WHERE
+		r.member_id=m.id AND m.id = #{id}
+	</select>
 
 </mapper>
