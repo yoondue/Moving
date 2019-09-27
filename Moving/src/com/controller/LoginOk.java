@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,7 +13,6 @@ import org.apache.logging.log4j.LogManager;
 import com.dao.MyBatisConnectionFactory;
 import com.dto.Member;
 import com.helper.BaseController;
-import com.helper.RegexHelper;
 import com.helper.WebHelper;
 import com.service.MemberService;
 import com.service.impl.MemberServiceImpl;
@@ -22,7 +20,7 @@ import com.service.impl.MemberServiceImpl;
 /**
  * Servlet implementation class LoginOk
  */
-@WebServlet("/loginOk.do")
+@WebServlet("/login_ok.do")
 public class LoginOk extends BaseController {
 
 	private static final long serialVersionUID = -891383550298665336L;
@@ -74,16 +72,10 @@ public class LoginOk extends BaseController {
 		// 7. Save Retrieved Member Information in Session
 		web.setSession("loginInfo", loginInfo);
 
-		// 8. Move Page
-		String movePage = request.getHeader("referer");
-		if (movePage == null) { // if the previous page does not exist,
-			movePage = web.getRootPath() + "/main.do"; // move main
-		}
+		// 8. Direct Go to 'main.do'
+		web.redirect(web.getRootPath() + "/main.do", "로그인하셨습니다.");
 
-		sqlSession.close();
-		web.redirect(movePage, null);
-
-		return "main";
+		return null;
 
 	}
 

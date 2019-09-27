@@ -92,7 +92,7 @@ button:focus {
 					<div class="row">
 						<div class="col-md-1"></div>
 						<div class="col-md-5">
-							<form action="${pageContext.request.contextPath}/loginOk.do"
+							<form action="${pageContext.request.contextPath}/login_ok.do"
 								method="post">
 								<input type="text" placeholder="ÀÌ¸ÞÀÏ(example@gmail.com)"
 									class="loginInfo" name="user_id"> <br> <input

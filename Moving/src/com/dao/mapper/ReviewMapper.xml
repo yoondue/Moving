@@ -78,6 +78,6 @@
 		INSERT INTO review
 		(id, movie_name, grade, contents, like_count, reg_date, member_id)
 		VALUES
-		(#{id}, #{movieName}, #{grade}, #{contents), 0, sysdate, #{memberId})
+		(#{id}, #{movieName}, #{grade}, #{contents}, 0, sysdate, #{memberId})
 	</insert>
 </mapper>
