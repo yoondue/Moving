@@ -162,7 +162,7 @@ section {
 				<div class="row moreReview">
 					<div class="col-md-10"></div>
 					<div class="col-md-2">
-						<a href="review.jsp" id="moreReview">더보기</a>
+						<a href="review.jsp" id="moreReview">더보기 </a>
 					</div>
 				</div>
 				<div class="row">

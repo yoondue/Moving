@@ -74,7 +74,7 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public List<Review> selectMovieReviewList(Movie movie) throws Exception {
 		List<Review> result = null;
-		
+
 		try {
 			result = sqlSession.selectList("ReviewMapper.selectMovieReviewList", movie);
 
@@ -89,15 +89,15 @@ public class ReviewServiceImpl implements ReviewService {
 			logger.error(e.getLocalizedMessage());
 			throw new Exception("리뷰 목록 조회에 실패했습니다.");
 		}
-		
+
 		return result;
 	}
 
 	@Override
 	public Review selectReviewGrade(Movie movie) throws Exception {
-		
+
 		Review result = null;
-		
+
 		try {
 			result = sqlSession.selectOne("ReviewMapper.selectReviewGrade", movie);
 			if (result == null) {
@@ -110,14 +110,14 @@ public class ReviewServiceImpl implements ReviewService {
 			logger.error(e.getLocalizedMessage());
 			throw new Exception("리뷰 목록 조회에 실패했습니다.");
 		}
-		
+
 		return result;
 	}
 
 	// 리뷰 쓰기
 	@Override
 	public void insertReview(Review review) throws Exception {
-		
+
 		try {
 			int result = sqlSession.insert("ReviewMapper.insertReview", review);
 			if (result == 0) { // If input value is null
@@ -133,7 +133,7 @@ public class ReviewServiceImpl implements ReviewService {
 		} finally {
 			sqlSession.commit();
 		}
-		
+
 	}
 
 }

@@ -30,7 +30,7 @@ import com.service.impl.ReviewServiceImpl;
 public class MovieInfo extends BaseController {
 
 	private static final long serialVersionUID = 1785522404768678079L;
-	
+
 	/** (1) 사용하고자 하는 Helper 객체 선언 */
 	Logger logger;
 	SqlSession sqlSession;
@@ -45,47 +45,46 @@ public class MovieInfo extends BaseController {
 		logger = LogManager.getFormatterLogger(request.getRequestURI());
 		sqlSession = MyBatisConnectionFactory.getSqlSession();
 		web = WebHelper.getInstance(request, response);
-		
+
 		reviewService = new ReviewServiceImpl(sqlSession, logger);
-		
+
 		MovieHelper helper = new MovieHelper();
 		Movie movie = new Movie();
-		
+
 		// 한글 깨질 때 디코딩
 //		String entitle = web.getString("title");
 //		String title = URLDecoder.decode(entitle, "UTF-8");
 
 		// 영화 제목 가져오기
 		String title = web.getString("title");
-		
+
 		System.out.println("타이틀 : " + title);
-		
+
 		// 영화 정보 조회
 		String jsonResult = helper.movieSelect(title, 1);
-		
+
 		try {
 //			movie = helper.jsonParser(json);
 			movie = helper.jsonParser(jsonResult);
-			
+
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 		// 리뷰 정보 조회
 		List<Review> reviewList = null;
-		
+
 		try {
 			reviewList = reviewService.selectMovieReviewList(movie);
 		} catch (Exception e) {
 			web.redirect(null, e.getLocalizedMessage());
 			return null;
 		}
-		
+
 		// 영화의 리뷰 평점 구하기
 		Review review = null;
-		
+
 		try {
 			review = reviewService.selectReviewGrade(movie);
 			System.out.println(review.getGrade());
@@ -95,11 +94,11 @@ public class MovieInfo extends BaseController {
 		} finally {
 			sqlSession.close();
 		}
-		
+
 		request.setAttribute("review", review);
 		request.setAttribute("reviewList", reviewList);
 		request.setAttribute("movie", movie);
-		
+
 		return "movie_info";
 	}
 
