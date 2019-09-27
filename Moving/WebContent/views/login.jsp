@@ -93,7 +93,7 @@ button:focus {
 						<div class="col-md-1"></div>
 						<div class="col-md-5">
 							<form action="${pageContext.request.contextPath}/login_ok.do"
-								method="post">
+								method="post"> 
 								<input type="text" placeholder="이메일(example@gmail.com)"
 									class="loginInfo" name="user_id"> <br> <input
 									type="password" placeholder="패스워드" class="loginInfo"

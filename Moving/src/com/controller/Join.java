@@ -18,7 +18,7 @@ public class Join extends BaseController {
 
 	private static final long serialVersionUID = 8039497732399319792L;
 
-	// 1. Declare Helper + Service Object
+	// 1. Declare Helper + Service Object 
 	WebHelper web;
 
 	@Override

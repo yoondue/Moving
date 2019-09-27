@@ -251,7 +251,7 @@ input[type=checkbox]:checked+label:after {
 										마이페이지</a></li>
 								<li><a href="${pageContext.request.contextPath}/out.do">
 										회원탈퇴</a></li>
-							</ul></li>
+							</ul></li> 
 					</c:otherwise>
 				</c:choose>
 			</form>

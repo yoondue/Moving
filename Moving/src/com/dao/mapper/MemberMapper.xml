@@ -103,7 +103,7 @@
 		WHERE id=#{id} AND user_pw=#{userPw}
 	</select>
 
-	<!-- Member Out -->
+	<!-- Member Out --> 
 	<delete id="deleteMember" parameterType="com.dto.Member">
 		DELETE FROM member WHERE
 		id=#{id}

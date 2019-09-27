@@ -69,7 +69,7 @@ public class LoginOk extends BaseController {
 		} catch (Exception e) {
 			sqlSession.close();
 			web.redirect(null, e.getLocalizedMessage());
-			return null;
+			return null; 
 		}
 
 		// 7. Save Retrieved Member Information in Session

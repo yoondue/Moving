@@ -45,7 +45,7 @@ public class OutOk extends BaseController {
 		}
 
 		// Service에 전달하기 위해 파라미터를 Beans로 묶기
-		Member loginInfo = (Member) web.getSession("loginInfo");
+		Member loginInfo = (Member) web.getSession("loginInfo"); 
 		Member member = new Member();
 		member.setId(loginInfo.getId());
 		member.setUserPw(userPw);

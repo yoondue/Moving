@@ -36,7 +36,7 @@ public class Logout extends BaseController {
 		}
 
 		// 4. Logout
-		web.removeAllSession();
+		web.removeAllSession(); 
 
 		// 5. Move Page
 		web.redirect(web.getRootPath() + "/login.do", "로그아웃 되었습니다.");

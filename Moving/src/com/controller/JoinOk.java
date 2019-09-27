@@ -27,7 +27,7 @@ import oracle.sql.DATE;
 public class JoinOk extends BaseController {
 	private static final long serialVersionUID = -4225169984323860028L;
 
-	// 1. Declare Helper + Service Object
+	// 1. Declare Helper + Service Object 
 	SqlSession sqlSession;
 	WebHelper web;
 	RegexHelper regex;

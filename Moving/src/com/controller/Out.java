@@ -18,7 +18,7 @@ public class Out extends BaseController {
 
 	private static final long serialVersionUID = 4424333342188117744L;
 
-	WebHelper web;
+	WebHelper web; 
 
 	@Override
 	public String doRun(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
