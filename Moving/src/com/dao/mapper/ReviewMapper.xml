@@ -64,7 +64,7 @@
 	
 	<select id="selectReviewGrade" parameterType="com.dto.Review"
 		resultMap="review">
-		SELECT AVG(grade) AS grade
+		SELECT TRUNC(AVG(grade),2) AS grade
 		FROM review
 		WHERE movie_name = #{title}
 	</select>
@@ -78,6 +78,6 @@
 		INSERT INTO review
 		(id, movie_name, grade, contents, like_count, reg_date, member_id)
 		VALUES
-		(#{id}, #{movieName}, #{grade}, #{contents), 0, sysdate, #{memberId})
+		(#{id}, #{movieName}, #{grade}, #{contents}, 0, sysdate, #{memberId})
 	</insert>
 </mapper>

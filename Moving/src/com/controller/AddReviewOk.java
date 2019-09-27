@@ -72,14 +72,14 @@ public class AddReviewOk extends BaseController {
 			sqlSession.close();
 			web.redirect(null, e.getLocalizedMessage());
 			return null;
-		} 
-//		finally {
-//			sqlSession.close();
-//		}
+		} finally {
+			sqlSession.close();
+		}
 		
-		sqlSession.close();
-		request.setAttribute("title", review.getMovieName());
-		web.redirect(web.getRootPath() + "/movie_info.do", "리뷰 작성이 완료되었습니다.");
+		title = review.getMovieName();
+		
+		request.setAttribute("title", title);
+		web.redirect(web.getRootPath() + "/movie_info.do?title="+title, "리뷰 작성이 완료되었습니다.");
 		
 		return null;
 	}

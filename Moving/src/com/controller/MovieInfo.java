@@ -95,6 +95,7 @@ public class MovieInfo extends BaseController {
 		
 		try {
 			review = reviewService.selectReviewGrade(movie);
+			System.out.println(review.getGrade());
 		} catch (Exception e) {
 			web.redirect(null, e.getLocalizedMessage());
 			return null;
