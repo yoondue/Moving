@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR"> 
+<meta charset="EUC-KR">
 <title>Insert title here</title>
 <style type="text/css">
 section {
@@ -154,7 +154,7 @@ section {
 			</div>
 			<div class="row" id="separate"></div>
 
-			<!-- card (review) --> 
+			<!-- card (review) -->
 			<div id="part2">
 				<div class="row" id="subtitle">
 					<h4>실시간 리뷰</h4>
@@ -240,40 +240,5 @@ section {
 		</div>
 		<!-- container -->
 	</section>
-
-	<script type="text/javascript">
-		$(function() {
-			// carousel
-			$("#carouselMovie1").click(function() {
-				location.href = "#";
-			});
-			$("#carouselMovie2").click(function() {
-				location.href = "#";
-			});
-			$("#carouselMovie3").click(function() {
-				location.href = "#";
-			});
-
-			// card (review)
-			var review1 = "http://naver.com";
-			var review2 = "http://google.com";
-			var review3 = "http://daum.net";
-			var review4 = "http://naver.com";
-
-			$(".review1").click(function() {
-				location.href = review1;
-			});
-			$(".review2").click(function() {
-				location.href = review2;
-			});
-			$(".review3").click(function() {
-				location.href = review3;
-			});
-			$(".review4").click(function() {
-				location.href = review4;
-			});
-
-		});
-	</script>
 </body>
 </html>
