@@ -136,4 +136,24 @@ public class ReviewServiceImpl implements ReviewService {
 
 	}
 
+	@Override
+	public void updateLikeCount(Review review) throws Exception {
+		
+		try {
+			int result = sqlSession.update("ReviewMapper.updateLikeCount", review);
+
+			if (result == 0) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			throw new Exception("리뷰가 없습니다.");
+		} catch (Exception e) {
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("좋아요에 실패하였습니다.");
+		} finally {
+			sqlSession.commit();
+		}
+		
+	}
+
 }

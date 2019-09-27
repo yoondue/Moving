@@ -62,6 +62,11 @@ section {
 	text-decoration: none;
 	font-weight: bold;
 }
+
+#carouselExampleIndicators, #align{
+	margin: 0 auto;
+}
+
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -128,7 +133,7 @@ section {
 						추천 영화
 					</h4>
 				</div>
-				<div class="row">
+				<div class="row" id="align">
 					<div class="col-md-1"></div>
 					<div class="col-md-10">
 						<div class="card-deck">

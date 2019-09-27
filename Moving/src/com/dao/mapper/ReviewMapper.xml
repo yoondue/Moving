@@ -80,7 +80,7 @@
 		VALUES
 		(#{id}, #{movieName}, #{grade}, #{contents}, 0, sysdate, #{memberId})
 	</insert>
-	
+
 	<update id="updateReview" parameterType="com.dto.Review">
 		UPDATE review SET
 		grade=#{grade}, contents=#{contents}, reg_date=sysdate
@@ -91,6 +91,11 @@
 		DELETE FROM review
 		WHERE id=#{id}
 	</delete>
-	
+
+	<update id="updateLikeCount" parameterType="com.dto.Review">
+		UPDATE review SET
+		like_count=like_count+1
+		WHERE id=#{id}
+	</update>
 	
 </mapper>
