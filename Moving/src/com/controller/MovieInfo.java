@@ -32,12 +32,9 @@ public class MovieInfo extends BaseController {
 	private static final long serialVersionUID = 1785522404768678079L;
 	
 	/** (1) 사용하고자 하는 Helper 객체 선언 */
-	// --> import org.apache.logging.log4j.Logger;
 	Logger logger;
-	// --> import org.apache.ibatis.session.SqlSession;
 	SqlSession sqlSession;
 //	SqlSession sqlSession2;
-	// --> import study.jsp.helper.WebHelper;
 	WebHelper web;
 	ReviewService reviewService;
 
@@ -45,11 +42,8 @@ public class MovieInfo extends BaseController {
 	public String doRun(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		/** (2) 사용하고자 하는 Helper+Service 객체 생성 */
-		// --> import org.apache.logging.log4j.LogManager;
 		logger = LogManager.getFormatterLogger(request.getRequestURI());
-		// --> import study.jsp.mysite.service.impl.MemberServiceImpl;
 		sqlSession = MyBatisConnectionFactory.getSqlSession();
-//		sqlSession2 = MyBatisConnectionFactory.getSqlSession();
 		web = WebHelper.getInstance(request, response);
 		
 		reviewService = new ReviewServiceImpl(sqlSession, logger);
@@ -57,15 +51,14 @@ public class MovieInfo extends BaseController {
 		MovieHelper helper = new MovieHelper();
 		Movie movie = new Movie();
 		
-		// 한글 깨질때 디코딩
+		// 한글 깨질 때 디코딩
 //		String entitle = web.getString("title");
-//		
 //		String title = URLDecoder.decode(entitle, "UTF-8");
 
 		// 영화 제목 가져오기
 		String title = web.getString("title");
 		
-//		System.out.println("타이틀 : " + title);
+		System.out.println("타이틀 : " + title);
 		
 		// 영화 정보 조회
 		String jsonResult = helper.movieSelect(title, 1);

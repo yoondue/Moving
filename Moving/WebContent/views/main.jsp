@@ -124,7 +124,8 @@ section {
 			<div class="row" id="part1">
 				<div class="row" id="subtitle">
 					<h4>
-						<strong style="color:#894242">${loginInfo.nickname}</strong>님을 위한 추천 영화
+						<strong style="color: #894242">${loginInfo.nickname}</strong>님을 위한
+						추천 영화
 					</h4>
 				</div>
 				<div class="row">
@@ -134,7 +135,9 @@ section {
 							<c:forEach var="movie" items="${recommendedMovie}" begin="0"
 								end="3" step="1">
 								<div class="card movie1">
-									<img src="${movie.image}" class="card-img-top" alt="...">
+									<a
+										href="${pageContext.request.contextPath}/movie_info.do?title='${movie.title}'"><img
+										src="${movie.image}" class="card-img-top" alt="..."> </a>
 									<div class="card-body movieBody">
 										<h6 class="card-title">${movie.title}</h6>
 										<p class="card-text">
@@ -249,25 +252,6 @@ section {
 			});
 			$("#carouselMovie3").click(function() {
 				location.href = "#";
-			});
-
-			// card (movie)
-			var movie1 = "http://naver.com";
-			var movie2 = "http://google.com";
-			var movie3 = "http://daum.net";
-			var movie4 = "http://naver.com";
-
-			$(".movie1").click(function() {
-				location.href = movie1;
-			});
-			$(".movie2").click(function() {
-				location.href = movie2;
-			});
-			$(".movie3").click(function() {
-				location.href = movie3;
-			});
-			$(".movie4").click(function() {
-				location.href = movie4;
 			});
 
 			// card (review)
