@@ -1,27 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR" import="java.sql.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%!Connection conn; // 드라이버 로드
-
-	// DB 접속 확인
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:1521:orcl";
-	String id = "codelab";
-	String pw = "oracleyj";%>
-
-<%
-	try {
-		// 1. JDBC 드라이버 로딩하기
-		Class.forName(driver);
-
-		// 2. DB 서버 접속하기
-		conn = DriverManager.getConnection(url, id, pw);
-		//out.println("정상적으로 데이터베이스에 접속되었습니다.");
-
-	} catch (SQLException e) {
-		out.println("예외가 발생하였습니다.");
-	}
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,6 +63,11 @@ section {
 	font-weight: bold;
 }
 </style>
+<script type="text/javascript">
+	$(function() {
+		location.href = "${pageContext.request.contextPath}/main.do";
+	});
+</script>
 </head>
 <body>
 	<jsp:include page="header.jsp" />
@@ -132,57 +117,33 @@ section {
 					</div>
 				</div>
 			</div>
-			<div class="row" id="separate"></div>
-
+			<div class="row" id="separate">
+				<hr>
+			</div>
 			<!-- card (movie) -->
 			<div class="row" id="part1">
 				<div class="row" id="subtitle">
-					<h4>○○○님을 위한 추천 영화</h4>
+					<h4>
+						<strong style="color:#894242">${loginInfo.nickname}</strong>님을 위한 추천 영화
+					</h4>
 				</div>
 				<div class="row">
 					<div class="col-md-1"></div>
 					<div class="col-md-10">
 						<div class="card-deck">
-							<div class="card movie1">
-								<img src="${pageContext.request.contextPath}/images/dummy.png"
-									class="card-img-top" alt="...">
-								<div class="card-body movieBody">
-									<h6 class="card-title">레미제라블</h6>
-									<p class="card-text">
-										<small class="text-muted">2015 · 드라마</small>
-									</p>
+							<c:forEach var="movie" items="${recommendedMovie}" begin="0"
+								end="3" step="1">
+								<div class="card movie1">
+									<img src="${movie.image}" class="card-img-top" alt="...">
+									<div class="card-body movieBody">
+										<h6 class="card-title">${movie.title}</h6>
+										<p class="card-text">
+											<small class="text-muted">${movie.pubDate} ·
+												${movie.genre1}</small>
+										</p>
+									</div>
 								</div>
-							</div>
-							<div class="card movie2">
-								<img src="${pageContext.request.contextPath}/images/dummy.png"
-									class="card-img-top" alt="...">
-								<div class="card-body deckBody">
-									<h6 class="card-title">레미제라블</h6>
-									<p class="card-text">
-										<small class="text-muted">2015 · 드라마</small>
-									</p>
-								</div>
-							</div>
-							<div class="card movie3">
-								<img src="${pageContext.request.contextPath}/images/dummy.png"
-									class="card-img-top" alt="...">
-								<div class="card-body deckBody">
-									<h6 class="card-title">레미제라블</h6>
-									<p class="card-text">
-										<small class="text-muted">2015 · 드라마</small>
-									</p>
-								</div>
-							</div>
-							<div class="card movie4">
-								<img src="${pageContext.request.contextPath}/images/dummy.png"
-									class="card-img-top" alt="...">
-								<div class="card-body deckBody">
-									<h6 class="card-title">레미제라블</h6>
-									<p class="card-text">
-										<small class="text-muted">2015 · 드라마</small>
-									</p>
-								</div>
-							</div>
+							</c:forEach>
 						</div>
 					</div>
 					<div class="col-md-1"></div>

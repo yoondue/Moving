@@ -9,55 +9,87 @@
 	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
 	<resultMap id="movie" type="com.dto.Movie">
 		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
-		<result property="id" column="id" />
-		<result property="title" column="movie_name" />
-		<result property="genre1" column="genre1" />
-		<result property="genre2" column="genre2" />
-		<result property="genre3" column="genre3" />
-		<result property="pubDate" column="year" />
-		<result property="country" column="country" />
-		<result property="grade" column="grade" />
-		<result property="image" column="movie_img" />
+		<result property="id" column="id" javaType="java.lang.Integer"
+			jdbcType="INTEGER" />
+		<result property="title" column="movie_name"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="genre1" column="genre1"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="genre2" column="genre2"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="genre3" column="genre3"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="pubDate" column="year"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="country" column="country"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="grade" column="grade"
+			javaType="java.lang.Float" jdbcType="FLOAT" />
+		<result property="image" column="movie_img"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
 	</resultMap>
 
-	<select id="selectGenreOne"
-		parameterType="com.dto.Movie"
-	 	resultMap="movie">
+	<select id="selectGenreOne" parameterType="com.dto.Movie"
+		resultMap="movie">
 		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
 		SELECT
-			movie_name, genre1, genre2, genre3, year, country, grade, movie_img
+		movie_name, genre1, genre2, genre3, year, country, grade,
+		movie_img
 		FROM movie
-		WHERE (genre1 = #{genre1} OR genre2 = #{genre1} OR genre3 = #{genre1})
-			AND grade >= #{grade}
-		ORDER BY id ASC
-	</select>
-	
-	<select id="selectGenreTwo"
-		parameterType="com.dto.Movie"
-	 	resultMap="movie">
-		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
-		SELECT
-			movie_name, genre1, genre2, genre3, year, country, grade, movie_img
-		FROM movie
-		WHERE (genre1 = #{genre1} OR genre2 = #{genre1} OR genre3 = #{genre1}
-			OR genre1 = #{genre2} OR genre2 = #{genre2} OR genre3 = #{genre2})
-			AND grade >= #{grade}
+		WHERE (genre1 = #{genre1} OR genre2 = #{genre1} OR
+		genre3 = #{genre1})
+		AND grade >= #{grade}
 		ORDER BY id ASC
 	</select>
 
-	<select id="selectGenreThree"
-		parameterType="com.dto.Movie"
-	 	resultMap="movie">
+	<select id="selectGenreTwo" parameterType="com.dto.Movie"
+		resultMap="movie">
 		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
 		SELECT
-			movie_name, genre1, genre2, genre3, year, country, grade, movie_img
+		movie_name, genre1, genre2, genre3, year, country, grade,
+		movie_img
 		FROM movie
-		WHERE (genre1 = #{genre1} OR genre2 = #{genre1} OR genre3 = #{genre1}
-			OR genre1 = #{genre2} OR genre2 = #{genre2} OR genre3 = #{genre2}
-			OR genre1 = #{genre3} OR genre2 = #{genre3} OR genre3 = #{genre3})
-			AND grade >= #{grade}
+		WHERE (genre1 = #{genre1} OR genre2 = #{genre1} OR
+		genre3 = #{genre1}
+		OR genre1 = #{genre2} OR genre2 = #{genre2} OR
+		genre3 = #{genre2})
+		AND grade >= #{grade}
 		ORDER BY id ASC
 	</select>
-	
+
+	<select id="selectGenreThree" parameterType="com.dto.Movie"
+		resultMap="movie">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+		SELECT
+		movie_name, genre1, genre2, genre3, year, country, grade,
+		movie_img
+		FROM movie
+		WHERE (genre1 = #{genre1} OR genre2 = #{genre1} OR
+		genre3 = #{genre1}
+		OR genre1 = #{genre2} OR genre2 = #{genre2} OR
+		genre3 = #{genre2}
+		OR genre1 = #{genre3} OR genre2 = #{genre3} OR
+		genre3 = #{genre3})
+		AND grade >= #{grade}
+		ORDER BY id ASC
+	</select>
+
+	<!-- Recommended Movie -->
+	<select id="selectMovieAsGenre" parameterType="com.dto.Member"
+		resultMap="movie">
+		SELECT movie_name, genre1, genre2, genre3, year, country,
+		grade, movie_img
+		FROM movie
+		WHERE (genre1 = #{genre1} OR genre2 =
+		#{genre1} OR genre3 = #{genre1}
+		OR genre1 = #{genre2} OR genre2 =
+		#{genre2} OR genre3 = #{genre2}
+		OR genre1 = #{genre3} OR genre2 =
+		#{genre3} OR genre3 = #{genre3})
+		AND grade >= 8.0
+
+
+	</select>
+
 
 </mapper>
