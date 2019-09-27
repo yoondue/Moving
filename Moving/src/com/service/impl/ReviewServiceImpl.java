@@ -28,7 +28,7 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public List<Review> selectReviewList() throws Exception { 
 
-		List<Review> result = null;
+		List<Review> result = null; 
 
 		try {
 			result = sqlSession.selectList("ReviewMapper.selectReviewList", null);

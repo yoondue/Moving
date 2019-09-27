@@ -58,7 +58,7 @@ public class MovieInfo extends BaseController {
 		// 영화 제목 가져오기
 		String title = web.getString("title"); 
 
-		System.out.println("타이틀 : " + title);
+		System.out.println("타이틀 : " + title); 
 
 		// 영화 정보 조회
 		String jsonResult = helper.movieSelect(title, 1);
