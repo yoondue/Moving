@@ -136,7 +136,7 @@ section {
 								end="3" step="1">
 								<div class="card movie1">
 									<a
-										href="${pageContext.request.contextPath}/movie_info.do?title='${movie.title}'"><img
+										href="${pageContext.request.contextPath}/movie_info.do?title=${movie.title}"><img
 										src="${movie.image}" class="card-img-top" alt="..."> </a>
 									<div class="card-body movieBody">
 										<h6 class="card-title">${movie.title}</h6>
