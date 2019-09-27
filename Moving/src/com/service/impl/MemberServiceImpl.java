@@ -145,4 +145,42 @@ public class MemberServiceImpl implements MemberService {
 		}
 
 	}
+
+	@Override
+	public void selectMemberPasswordCount(Member member) throws Exception {
+		try {
+			int result = sqlSession.update("MemberMapper.selectMemberPasswordCount", member);
+
+			if (result == 0) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			throw new Exception("잘못된 비밀번호입니다.");
+		} catch (Exception e) {
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("비밀번호 검사에 실패하였습니다.");
+		} finally {
+			sqlSession.commit();
+		}
+
+	}
+
+	@Override
+	public void deleteMember(Member member) throws Exception {
+		try {
+			int result = sqlSession.update("MemberMapper.deleteMember", member);
+
+			if (result == 0) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			throw new Exception("이미 탈퇴한 회원입니다.");
+		} catch (Exception e) {
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("회원 탈퇴에 실패하였습니다.");
+		} finally {
+			sqlSession.commit();
+		}
+
+	}
 }

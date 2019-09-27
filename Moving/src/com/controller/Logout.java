@@ -32,13 +32,14 @@ public class Logout extends BaseController {
 
 		if (loginInfo == null) {
 			web.redirect(web.getRootPath() + "/login.do", "로그인 후 이용 가능합니다.");
+			return null;
 		}
 
 		// 4. Logout
 		web.removeAllSession();
 
 		// 5. Move Page
-		web.redirect(web.getRootPath() + "/main.do", "로그아웃 되었습니다.");
+		web.redirect(web.getRootPath() + "/login.do", "로그아웃 되었습니다.");
 
 		return null;
 	}

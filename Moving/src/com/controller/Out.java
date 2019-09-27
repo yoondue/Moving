@@ -11,28 +11,27 @@ import com.helper.BaseController;
 import com.helper.WebHelper;
 
 /**
- * Servlet implementation class Join
+ * Servlet implementation class Out
  */
-@WebServlet("/join.do")
-public class Join extends BaseController {
+@WebServlet("/out.do")
+public class Out extends BaseController {
 
-	private static final long serialVersionUID = 8039497732399319792L;
+	private static final long serialVersionUID = 4424333342188117744L;
 
-	// 1. Declare Helper + Service Object
 	WebHelper web;
 
 	@Override
 	public String doRun(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 2. Create Helper Object
+
 		web = WebHelper.getInstance(request, response);
 
-		// 3. Check for Login
+		// Check for Login
 		if (web.getSession("loginInfo") != null) {
-			web.redirect(web.getRootPath() + "/main.do", "이미 로그인 하셨습니다.");
+			web.redirect(web.getRootPath() + "/main.do", "로그인 후에 이용가능합니다.");
 			return null;
 		}
 
-		return "join";
+		return "out";
 	}
 
 }

@@ -40,7 +40,10 @@ public class LoginOk extends BaseController {
 
 		// 3. Check for Login
 		if (web.getSession("loginInfo") != null) {
+			sqlSession.close();
 			web.redirect(web.getRootPath() + "/main.do", "이미 로그인 하셨습니다.");
+			
+			return null;
 		}
 
 		// 4. Parameter Processing
@@ -72,7 +75,7 @@ public class LoginOk extends BaseController {
 		// 7. Save Retrieved Member Information in Session
 		web.setSession("loginInfo", loginInfo);
 
-		// 8. Direct Go to 'main.do'
+		// 8. Go to 'main.do'
 		web.redirect(web.getRootPath() + "/main.do", "로그인하셨습니다.");
 
 		return null;

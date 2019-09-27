@@ -92,7 +92,24 @@
 
 	<!-- Find Password -->
 	<update id="updateMemberPassword" parameterType="com.dto.Member">
-		UPDATE member SET user_pw = #{userPw} WHERE user_id = #{userId}
+		UPDATE member
+		SET user_pw = #{userPw} WHERE user_id = #{userId}
 	</update>
+
+	<!-- Password Count (Member Out) -->
+	<select id="selectMemberPasswordCount"
+		parameterType="com.dto.Member" resultType="int">
+		SELECT count(id) FROM member
+		WHERE id=#{id} AND user_pw=#{userPw}
+	</select>
+
+	<!-- Member Out -->
+	<delete id="deleteMember" parameterType="com.dto.Member">
+		DELETE FROM member WHERE
+		id=#{id}
+	</delete>
+
+
+
 
 </mapper>

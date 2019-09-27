@@ -23,7 +23,7 @@ import oracle.sql.DATE;
 /**
  * Servlet implementation class joinOk
  */
-@WebServlet("/joinOk.do")
+@WebServlet("/join_ok.do")
 public class JoinOk extends BaseController {
 	private static final long serialVersionUID = -4225169984323860028L;
 
@@ -45,7 +45,9 @@ public class JoinOk extends BaseController {
 
 		// 3. Check for Login
 		if (web.getSession("loginInfo") != null) {
+			sqlSession.close();
 			web.redirect(web.getRootPath() + "/main.do", "이미 로그인 하셨습니다.");
+			return null;
 		}
 
 		// 4. Put the passed parameters in Beans Object
@@ -138,7 +140,7 @@ public class JoinOk extends BaseController {
 
 		// 7. Complete Join -> Move Login Page
 		sqlSession.close();
-		web.redirect(web.getRootPath() + "/main.do", "회원가입이 완료되었습니다.");
+		web.redirect(web.getRootPath() + "/main.do", "회원가입이 완료되었습니다. 로그인 해 주세요.");
 
 		return null;
 	}
