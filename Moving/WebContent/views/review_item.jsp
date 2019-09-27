@@ -95,6 +95,9 @@
 	.col-md-2, .col-3{
 		padding-left: 30px;
 	}
+	.btn{
+		float: right;
+	}
 
 
 </style>
@@ -150,6 +153,10 @@
 							<span class="like-span">554</span>
 							<button type="submit" class="btn btn-light like-btn">좋아요</button>
 						</div>
+					</div>
+					<div class="row btn">
+						<button type="submit" class="btn btn-primary">수정하기</button>
+						<button type="submit" class="btn btn-danger">삭제하기</button>
 					</div>
 				</div>
 			

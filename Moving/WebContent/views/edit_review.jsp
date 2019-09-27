@@ -176,38 +176,39 @@
 				</div>
 
 				<div class="col-md-8 bg-box">
-					<div class="row comment">
-						<div class="col-md-8 col-6 co-col">
-							<h3>코멘트 작성</h3>
+					<form action="${pageContext.request.contextPath}/edit_review_ok" method="post">
+						<div class="row comment">
+							<div class="col-md-8 col-6 co-col">
+								<h3>코멘트 작성</h3>
+							</div>
+							<div class="col-md-4 col-6 btn-col">
+								<button type="submit" class="btn btn-outline-secondary btn-sm">취소</button>
+								<button type="submit" class="btn btn-outline-secondary btn-sm">수정하기</button>
+							</div>
+							<hr>
 						</div>
-						<div class="col-md-4 col-6 btn-col">
-							<button type="submit" class="btn btn-outline-secondary btn-sm">취소</button>
-							<button type="submit" class="btn btn-outline-secondary btn-sm">수정하기</button>
-						</div>
-						<hr>
-					</div>
-
-					<div class="row review-box">
-						<div class="row title">
-							<div class="col-md-7 col-7 title2">레미제라블</div>
-							<div class="col-md-5 col-5 star-box">
-								<span id="star_grade"> 
-									<a href="#"><img src="/Moving/images/star1.png" class="star"></a> 
-									<a href="#"><img src="/Moving/images/star1.png" class="star"></a> 
-									<a href="#"><img src="/Moving/images/star1.png" class="star"></a> 
-									<a href="#"><img src="/Moving/images/star1.png" class="star"></a> 
-									<a href="#"><img src="/Moving/images/star1.png" class="star"></a> 
-								</span>
+	
+						<div class="row review-box">
+							<div class="row title">
+								<div class="col-md-7 col-7 title2">레미제라블</div>
+								<div class="col-md-5 col-5 star-box">
+									<span id="star_grade"> 
+										<a href="#"><img src="/Moving/images/star1.png" class="star"></a> 
+										<a href="#"><img src="/Moving/images/star1.png" class="star"></a> 
+										<a href="#"><img src="/Moving/images/star1.png" class="star"></a> 
+										<a href="#"><img src="/Moving/images/star1.png" class="star"></a> 
+										<a href="#"><img src="/Moving/images/star1.png" class="star"></a> 
+									</span>
+								</div>
+							</div>
+							
+							<div class="row content">
+								<textarea rows="16">이전에 작성한 데이터가 들어감!!</textarea>
 							</div>
 						</div>
-						
-						<div class="row content">
-							<form class="content-ta">
-								<textarea rows="16">이전에 작성한 데이터가 들어감!!</textarea>
-							</form>
-						</div>
-						
-					</div>
+					
+					
+					</form>
 				</div>
 
 				<div class="col-md-2">

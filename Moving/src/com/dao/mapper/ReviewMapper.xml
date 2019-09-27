@@ -80,4 +80,17 @@
 		VALUES
 		(#{id}, #{movieName}, #{grade}, #{contents}, 0, sysdate, #{memberId})
 	</insert>
+	
+	<update id="updateReview" parameterType="com.dto.Review">
+		UPDATE review SET
+		grade=#{grade}, contents=#{contents}, reg_date=sysdate
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="deleteReview" parameterType="com.dto.Review">
+		DELETE FROM review
+		WHERE id=#{id}
+	</delete>
+	
+	
 </mapper>
