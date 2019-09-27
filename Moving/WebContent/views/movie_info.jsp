@@ -182,7 +182,7 @@
 							<hr>
 							<span>평점 ★${review.grade }</span>
 							<hr>
-							<button type="submit" class="btn" id="addReview">리뷰 쓰기</button>
+							<button type="submit" class="btn" id="addReview" onclick="location.href='${pageContext.request.contextPath}/add_review.do?title=${movie.title }'">리뷰 쓰기</button>
 							<button type="submit" class="btn" id="addScrap">스크랩</button>
 						</div>
 						

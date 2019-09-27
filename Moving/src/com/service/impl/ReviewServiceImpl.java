@@ -105,7 +105,6 @@ public class ReviewServiceImpl implements ReviewService {
 			if (result == null) {
 				throw new NullPointerException();
 			}
-
 		} catch (NullPointerException e) {
 			sqlSession.rollback();
 			throw new Exception("조회된 리뷰 목록이 없습니다.");
@@ -115,6 +114,28 @@ public class ReviewServiceImpl implements ReviewService {
 		}
 		
 		return result;
+	}
+
+	// 리뷰 쓰기
+	@Override
+	public void insertReview(Review review) throws Exception {
+		
+		try {
+			int result = sqlSession.insert("ReviewMapper.insertReview", review);
+			if (result == 0) { // If input value is null
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			sqlSession.rollback();
+			throw new Exception("저장된 리뷰가 없습니다.");
+		} catch (Exception e) {
+			sqlSession.rollback();
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("리뷰 작성에 실패하였습니다.");
+		} finally {
+			sqlSession.commit();
+		}
+		
 	}
 
 }

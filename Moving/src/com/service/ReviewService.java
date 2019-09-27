@@ -15,4 +15,6 @@ public interface ReviewService {
 	public List<Review> selectMovieReviewList(Movie movie) throws Exception;
 	
 	public Review selectReviewGrade(Movie movie) throws Exception;
+	
+	public void insertReview(Review review) throws Exception;
 }

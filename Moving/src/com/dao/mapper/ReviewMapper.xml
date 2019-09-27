@@ -11,14 +11,22 @@
 		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
 		<result property="id" column="id" javaType="java.lang.Integer"
 			jdbcType="INTEGER" />
-		<result property="movieName" column="movie_name" />
-		<result property="grade" column="grade" />
-		<result property="contents" column="contents" />
-		<result property="likeCount" column="like_count" />
-		<result property="regDate" column="reg_date" />
-		<result property="memberId" column="member_id" />
-		<result property="nickname" column="nickname" />
-		<result property="profileImg" column="profile_img" />
+		<result property="movieName" column="movie_name" 
+			javaType="java.lang.String" jdbcType="VARCHAR"/>
+		<result property="grade" column="grade" 
+			javaType="java.lang.Float" jdbcType="REAL"/>
+		<result property="contents" column="contents" 
+			javaType="java.lang.String" jdbcType="VARCHAR"/>
+		<result property="likeCount" column="like_count" 
+			javaType="java.lang.Integer" jdbcType="INTEGER"/>
+		<result property="regDate" column="reg_date" 
+			javaType="java.sql.Date" jdbcType="DATE"/>
+		<result property="memberId" column="member_id" 
+			javaType="java.lang.Integer" jdbcType="INTEGER"/>
+		<result property="nickname" column="nickname" 
+			javaType="java.lang.String" jdbcType="VARCHAR"/>
+		<result property="profileImg" column="profile_img" 
+			javaType="java.lang.String" jdbcType="VARCHAR"/>
 	</resultMap>
 
 	<select id="selectReviewList" parameterType="com.dto.Review"
@@ -60,5 +68,16 @@
 		FROM review
 		WHERE movie_name = #{title}
 	</select>
-
+	
+	<insert id="insertReview" parameterType="com.dto.Review"
+		useGeneratedKeys="true">
+		<selectKey keyProperty="id" resultType="int" order="BEFORE">
+			SELECT
+			RV_SEQ.nextval FROM DUAL
+		</selectKey>
+		INSERT INTO review
+		(id, movie_name, grade, contents, like_count, reg_date, member_id)
+		VALUES
+		(#{id}, #{movieName}, #{grade}, #{contents), 0, sysdate, #{memberId})
+	</insert>
 </mapper>

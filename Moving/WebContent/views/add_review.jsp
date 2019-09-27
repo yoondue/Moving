@@ -94,10 +94,6 @@
     h3{
     	display: inline-block;
     }
-    .content-ta{
-    	width: 100%;
-    	
-    }
     
     textarea{
     	display: block;
@@ -133,8 +129,24 @@
 			// 선택한 별과 이전의 별 모두 채워진 별로 만들기
 			$(this).children("img").attr('src', '/Moving/images/star2.png');
 			$(this).prevAll("a").children("img").attr('src', '/Moving/images/star2.png');
-	
-		    return false;
+			
+			// 별점 매기기
+			for(var i=0; i<5; i++){
+				if($(this).is($('#star_grade a:eq('+ i +')'))){
+					
+					var grade = (i+1)*2;
+					
+					$('#grade').attr('value', grade);
+					
+// 					$('textarea').text(grade);
+
+					
+				}
+			}
+
+			return false;
+			
+			// 넘길 값 : 영화 제목, 별점, 리뷰내용
 		});
 	});
 
@@ -156,6 +168,9 @@
 				</div>
 
 				<div class="col-md-8 bg-box">
+					<form action="${pageContext.request.contextPath}/add_review_ok" method="post">
+						<input type="hidden" value="${movie.title }" name="title">
+						
 					<div class="row comment">
 						<div class="col-md-8 col-6 co-col">
 							<h3>코멘트 작성</h3>
@@ -169,9 +184,10 @@
 
 					<div class="row review-box">
 						<div class="row title">
-							<div class="col-md-7 col-7 title2">레미제라블</div>
+							<div class="col-md-7 col-7 title2">${movie.title }</div>
 							<div class="col-md-5 col-5 star-box">
-								<span id="star_grade"> 
+								<span id="star_grade">
+									<input type="hidden" name="grade" id="grade"> 
 									<a href="#"><img src="/Moving/images/star1.png" class="star"></a> 
 									<a href="#"><img src="/Moving/images/star1.png" class="star"></a> 
 									<a href="#"><img src="/Moving/images/star1.png" class="star"></a> 
@@ -182,12 +198,11 @@
 						</div>
 						
 						<div class="row content">
-							<form class="content-ta">
-								<textarea rows="16"></textarea>
-							</form>
+							<textarea rows="16" name="contents"></textarea>
 						</div>
 						
 					</div>
+					</form>
 				</div>
 
 				<div class="col-md-2">
