@@ -26,7 +26,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 	// 리뷰 전체 목록 조회
 	@Override
-	public List<Review> selectReviewList() throws Exception {
+	public List<Review> selectReviewList() throws Exception { 
 
 		List<Review> result = null;
 

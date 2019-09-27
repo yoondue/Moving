@@ -56,7 +56,7 @@ public class MovieInfo extends BaseController {
 //		String title = URLDecoder.decode(entitle, "UTF-8");
 
 		// 영화 제목 가져오기
-		String title = web.getString("title");
+		String title = web.getString("title"); 
 
 		System.out.println("타이틀 : " + title);
 

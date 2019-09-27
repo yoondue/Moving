@@ -154,7 +154,7 @@ section {
 			</div>
 			<div class="row" id="separate"></div>
 
-			<!-- card (review) -->
+			<!-- card (review) --> 
 			<div id="part2">
 				<div class="row" id="subtitle">
 					<h4>½Ç½Ã°£ ¸®ºä</h4>
