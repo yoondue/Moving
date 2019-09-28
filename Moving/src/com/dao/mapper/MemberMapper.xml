@@ -86,7 +86,7 @@
 	<select id="selectLoginInfo" parameterType="com.dto.Member"
 		resultMap="member">
 		SELECT id, user_id, user_pw, nickname, age, gender, genre1,
-		genre2, genre3, reg_date FROM member WHERE user_id = #{userId} AND
+		genre2, genre3, reg_date, profile_img FROM member WHERE user_id = #{userId} AND
 		user_pw = #{userPw}
 	</select>
 

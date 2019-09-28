@@ -14,10 +14,13 @@ import org.apache.ibatis.session.SqlSession;
 import com.dao.MyBatisConnectionFactory;
 import com.dto.Member;
 import com.dto.Movie;
+import com.dto.Review;
 import com.helper.BaseController;
 import com.helper.WebHelper;
 import com.service.MovieService;
+import com.service.ReviewService;
 import com.service.impl.MovieServiceImpl;
+import com.service.impl.ReviewServiceImpl;
 
 /**
  * Servlet implementation class Main
@@ -31,6 +34,7 @@ public class Main extends BaseController {
 	SqlSession sqlSession;
 	WebHelper web;
 	MovieService movieService;
+	ReviewService reviewService;
 
 	@Override
 	public String doRun(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,6 +42,7 @@ public class Main extends BaseController {
 		sqlSession = MyBatisConnectionFactory.getSqlSession();
 		web = WebHelper.getInstance(request, response);
 		movieService = new MovieServiceImpl(sqlSession, logger);
+		reviewService = new ReviewServiceImpl(sqlSession, logger);
 
 		// 3. Select My Review List
 		List<Movie> recommendedMovie = null;
@@ -62,13 +67,26 @@ public class Main extends BaseController {
 		} catch (Exception e) {
 			web.redirect(null, e.getLocalizedMessage());
 			return null;
+		}
+//		} finally {
+//			sqlSession.close();
+//		}
+		
+		List<Review> reviewList = null;
+		
+		try {
+			reviewList = reviewService.selectReviewList();
+		} catch (Exception e) {
+			web.redirect(null, e.getLocalizedMessage());
+			return null;
 		} finally {
 			sqlSession.close();
 		}
-
+		
 		// 4. Pass Query Results to the View
 		request.setAttribute("recommendedMovie", recommendedMovie);
-
+		request.setAttribute("reviewList", reviewList);
+		
 		return "main";
 	}
 

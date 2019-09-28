@@ -247,13 +247,12 @@
 											</div>
 											<hr>
 											<div class="like">
-													<img src="/Moving/images/thumbs-up.png" class="thumbs-up">
-													<span class="like-span">${review.likeCount }</span>
-													<button type="submit" class="btn btn-light like-btn" 
-														onclick="location.href='${pageContext.request.contextPath}/review_like.do?title=${movie.title }&reviewId=${review.id}'">
-														좋아요</button>
+												<img src="/Moving/images/thumbs-up.png" class="thumbs-up">
+												<span class="like-span">${review.likeCount }</span>
+												<button type="submit" class="btn btn-light like-btn" 
+													onclick="location.href='${pageContext.request.contextPath}/review_like.do?title=${movie.title }&reviewId=${review.id}'">
+													좋아요</button>
 											</div>
-									
 									</div>
 								</div>
 								</c:forEach>

@@ -33,12 +33,11 @@
 		resultMap="review">
 		SELECT
 		r.id, m.nickname, r.movie_name, r.grade, r.contents,
-		r.like_count,
-		r.reg_date, r.member_id
+		r.like_count, r.reg_date, r.member_id, m.nickname, m.profile_img
 		FROM review r, member m
 		WHERE
 		r.member_id=m.id
-		ORDER BY id ASC
+		ORDER BY r.reg_date DESC
 	</select>
 
 	<select id="selectMyReview" parameterType="com.dto.Review"

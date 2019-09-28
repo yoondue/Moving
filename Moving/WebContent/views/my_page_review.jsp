@@ -37,7 +37,7 @@ section {
 }
 
 .circle {
-	background-color: gray;
+ 	background-color: gray; 
 	border-radius: 1000px !important;
 	overflow: hidden;
 	width: 100px;
@@ -79,6 +79,12 @@ section {
 	float: right;
 	color: gray;
 }
+
+.profile-pic{
+	width: 100%;
+	height: 100%;
+}
+
 </style>
 </head>
 <body>
@@ -91,7 +97,7 @@ section {
 				<div class="col-md-2">
 					<div class="circle">
 						<!-- User Profile Image -->
-						<img class="profile-pic" src="">
+						<img class="profile-pic" src="${loginInfo.profileImg }">
 					</div>
 				</div>
 				<div class="col-md-9">

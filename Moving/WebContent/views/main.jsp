@@ -67,6 +67,118 @@ section {
 	margin: 0 auto;
 }
 
+	.review{
+		width: 100%;
+		height: 350px;
+		background-color: #f5f5f5;
+		border-radius: 15px;
+		padding: 10px;
+/* 		margin: 5px; */
+		float: left;
+	}
+	.titleBox{
+		width:100%;
+		height: 35px;
+	}
+	.movieTitle{
+		font-size: 20px;
+		margin-top: 5px;
+	}
+	
+	.writer{
+		width: 100%;
+		height: 35px;
+		margin: 15px 5px 5px 0px;
+	}
+	.rounded-circle{
+		display: inline-block;
+		width: 35px;
+		height: 35px;
+		float: left;
+	}
+	.nickname{
+		display: inline-block;
+		width: 58%;
+		height: 40px;
+		margin-top: 7px;
+		margin-left: 10px;
+		float: left;
+	}
+	.star-box{
+		display: inline-block;
+		width: 20%;
+		height: 30px;
+		border: 1px solid #ededed;
+		border-radius: 15px;
+		background-color: white;
+		padding-left: 5px;
+		margin-left: 15px;
+		margin-top: 5px;
+		float: left;
+	}
+	.star{
+		display: inline-block;
+		width: 16px;
+		height: 16px;
+		margin-left: 3px;
+	}
+	.star-span{
+		display: inline-block;
+		width: 40%;
+		margin-top: 2px;
+	}
+	.simg-box{
+		display: inline-block;
+		width:auto;
+	}
+	
+	.review-content{
+		width: 100%;
+		height: 125px;
+	}
+	.like{
+		width: 100%;
+		height: 30px;
+	}
+	.thumbs-up{
+		display: inline-block;
+		width: 20px;
+		height: 20px;
+	}
+	.like-btn{
+		display: inline-block;
+		background-color: transparent;
+	}
+
+	.like-span{
+		margin-top: 4px;
+	}
+	
+	.co-row{
+		margin: 0 auto;
+	}
+	
+	.co-box{
+		padding-left: 0px; 
+	}
+	
+	.more-box{
+		padding-right: 0px; 
+	}
+	
+	.co-title{
+		width: 100%;
+		display: inline-block;
+	}
+	.more{
+		float:right;
+	}
+	
+	
+
+
+
+
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -170,75 +282,132 @@ section {
 						<a href="review.jsp" id="moreReview">더보기 </a>
 					</div>
 				</div>
+				
 				<div class="row">
-					<div class="col-md-1"></div>
-					<div class="col-md-5">
-						<div class="card mb-3 review1" style="max-width: 350px;">
-							<div class="row no-gutters">
-								<div class="col-md-5">
-									<div class="userImage"></div>
-								</div>
-								<div class="col-md-7">
-									<div class="card-body reviewBody">
-										<p class="card-text">User ID:</p>
-										<h5 class="card-title">contents' title</h5>
+					<div class="col-md-2">
+					</div>
+					
+					<div class="col-md-8">
+						<div class="row">
+						
+							<c:forEach var="review" items="${reviewList }" begin="0" end="1">
+								<div class="col-md-6">
+									<div class="review">
+										<div class="titleBox">
+											<span class="movieTitle">${review.movieName }</span>
+										</div>
+										<hr>
+											
+										<div class="writer">
+											<img src="${review.profileImg }" class="rounded-circle">
+											<div class="nickname">
+												<span>${review.nickname }</span>
+											</div>
+											<div class="star-box">
+												<img src="/Moving/images/star2.png" class="star">
+												<span>${review.grade }</span>
+											</div>
+										</div>
+										<hr>
+										<div class="review-content">
+											<span>${review.contents }</span>
+										</div>
+										<hr>
+										<div class="like">
+											<img src="/Moving/images/thumbs-up.png" class="thumbs-up">
+											<span class="like-span">${review.likeCount }</span>
+											<button type="submit" class="btn btn-light like-btn">좋아요</button>
+										</div>
 									</div>
 								</div>
-							</div>
-						</div>
+							
+							</c:forEach>
+						</div>			
 					</div>
-					<div class="col-md-5">
-						<div class="card mb-3 review2" style="max-width: 350px;">
-							<div class="row no-gutters">
-								<div class="col-md-5">
-									<div class="userImage"></div>
-								</div>
-								<div class="col-md-7">
-									<div class="card-body reviewBody">
-										<p class="card-text">User ID:</p>
-										<h5 class="card-title">contents' title</h5>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-1"></div>
+					
 				</div>
+					
+					<div class="col-md-2">
+					</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+<!-- 				<div class="row"> -->
+<!-- 					<div class="col-md-1"></div> -->
+<!-- 					<div class="col-md-5"> -->
+<!-- 						<div class="card mb-3 review1" style="max-width: 350px;"> -->
+<!-- 							<div class="row no-gutters"> -->
+<!-- 								<div class="col-md-5"> -->
+<!-- 									<div class="userImage"></div> -->
+<!-- 								</div> -->
+<!-- 								<div class="col-md-7"> -->
+<!-- 									<div class="card-body reviewBody"> -->
+<!-- 										<p class="card-text">User ID:</p> -->
+<!-- 										<h5 class="card-title">contents' title</h5> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-md-5"> -->
+<!-- 						<div class="card mb-3 review2" style="max-width: 350px;"> -->
+<!-- 							<div class="row no-gutters"> -->
+<!-- 								<div class="col-md-5"> -->
+<!-- 									<div class="userImage"></div> -->
+<!-- 								</div> -->
+<!-- 								<div class="col-md-7"> -->
+<!-- 									<div class="card-body reviewBody"> -->
+<!-- 										<p class="card-text">User ID:</p> -->
+<!-- 										<h5 class="card-title">contents' title</h5> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-md-1"></div> -->
+<!-- 				</div> -->
 
-				<div class="row">
-					<div class="col-md-1"></div>
-					<div class="col-md-5">
-						<div class="card mb-3 review3" style="max-width: 350px;">
-							<div class="row no-gutters">
-								<div class="col-md-5">
-									<div class="userImage"></div>
-								</div>
-								<div class="col-md-7">
-									<div class="card-body reviewBody">
-										<p class="card-text">User ID:</p>
-										<h5 class="card-title">contents' title</h5>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-5">
-						<div class="card mb-3 review4" style="max-width: 350px;">
-							<div class="row no-gutters">
-								<div class="col-md-5">
-									<div class="userImage"></div>
-								</div>
-								<div class="col-md-7">
-									<div class="card-body reviewBody">
-										<p class="card-text">User ID:</p>
-										<h5 class="card-title">contents' title</h5>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-1"></div>
-				</div>
+<!-- 				<div class="row"> -->
+<!-- 					<div class="col-md-1"></div> -->
+<!-- 					<div class="col-md-5"> -->
+<!-- 						<div class="card mb-3 review3" style="max-width: 350px;"> -->
+<!-- 							<div class="row no-gutters"> -->
+<!-- 								<div class="col-md-5"> -->
+<!-- 									<div class="userImage"></div> -->
+<!-- 								</div> -->
+<!-- 								<div class="col-md-7"> -->
+<!-- 									<div class="card-body reviewBody"> -->
+<!-- 										<p class="card-text">User ID:</p> -->
+<!-- 										<h5 class="card-title">contents' title</h5> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-md-5"> -->
+<!-- 						<div class="card mb-3 review4" style="max-width: 350px;"> -->
+<!-- 							<div class="row no-gutters"> -->
+<!-- 								<div class="col-md-5"> -->
+<!-- 									<div class="userImage"></div> -->
+<!-- 								</div> -->
+<!-- 								<div class="col-md-7"> -->
+<!-- 									<div class="card-body reviewBody"> -->
+<!-- 										<p class="card-text">User ID:</p> -->
+<!-- 										<h5 class="card-title">contents' title</h5> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-md-1"></div> -->
+<!-- 				</div> -->
 
 			</div>
 			<!-- <div class="row" id="part2"> -->
