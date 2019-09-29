@@ -80,7 +80,6 @@ public class ReviewServiceImpl implements ReviewService {
 //			if (result == null) {
 //				throw new NullPointerException();
 //			}
-
 		} 
 //		catch (NullPointerException e) {
 //			sqlSession.rollback();
