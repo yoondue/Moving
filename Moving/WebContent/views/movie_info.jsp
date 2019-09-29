@@ -294,9 +294,7 @@
 		
 	</section>
 
-	<footer>
-	
-	</footer>
+<%-- 	<jsp:include page="footer.jsp" /> --%>
 
 </body>
 </html>

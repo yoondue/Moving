@@ -76,7 +76,7 @@ button:focus {
 			<div class="row">
 				<div class="col-md-10"></div>
 				<div class="col-md-2">
-					<button id="loginBtn" onclick="location.href ='login.jsp'">로그인</button>
+					<button id="loginBtn" onclick="location.href ='${pageContext.request.contextPath}/login.do'">로그인</button>
 				</div>
 			</div>
 			<div class="row">

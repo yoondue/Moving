@@ -87,13 +87,23 @@ public class MovieInfo extends BaseController {
 
 		try {
 			review = reviewService.selectReviewGrade(movie);
-			System.out.println(review.getGrade());
+			System.out.println("여기까지!!!" + review.getGrade());
 		} catch (Exception e) {
 			web.redirect(null, e.getLocalizedMessage());
 			return null;
 		} finally {
 			sqlSession.close();
 		}
+		
+		// 해당 영화에 리뷰가 하나도 없을때
+		if(review.equals(null) && reviewList.isEmpty()) {
+			System.out.println("리뷰 널!!!");
+			request.setAttribute("movie", movie);
+			web.redirect(web.getRootPath() + "/movie_info.do?title="+title, null);
+			return null;
+			
+		}
+		
 
 		request.setAttribute("review", review);
 		request.setAttribute("reviewList", reviewList);

@@ -265,9 +265,8 @@ h3 {
 
 								<br> <br>
 								<div class="box2">
-									<input type="submit" class="btn btn-secondary join-btn"
-										value="회원가입"> <input type="submit"
-										class="btn btn-default cancel-btn" value="취소">
+									<input type="submit" class="btn btn-secondary join-btn" value="회원가입"> 
+									<button type="button" class="btn btn-default cancel-btn" onclick="location.href='${pageContext.request.contextPath}/login.do'">취소</button>
 								</div>
 
 							</form>
@@ -275,7 +274,6 @@ h3 {
 					</div>
 
 				</div>
-
 
 			</div>
 		</div>

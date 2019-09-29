@@ -54,15 +54,14 @@ public class ReviewServiceImpl implements ReviewService {
 
 		try {
 			result = sqlSession.selectList("ReviewMapper.selectMyReview", member);
-
+			
 			if (result == null) {
 				throw new NullPointerException();
 			}
-
-		} catch (NullPointerException e) {
+		}catch (NullPointerException e) {
 			sqlSession.rollback();
 			throw new Exception("조회된 리뷰 목록이 없습니다.");
-		} catch (Exception e) {
+		}catch (Exception e) {
 			logger.error(e.getLocalizedMessage());
 			throw new Exception("리뷰 목록 조회에 실패했습니다.");
 		}
@@ -77,15 +76,17 @@ public class ReviewServiceImpl implements ReviewService {
 
 		try {
 			result = sqlSession.selectList("ReviewMapper.selectMovieReviewList", movie);
+			System.out.println("리뷰리스트: " + result);
+//			if (result == null) {
+//				throw new NullPointerException();
+//			}
 
-			if (result == null) {
-				throw new NullPointerException();
-			}
-
-		} catch (NullPointerException e) {
-			sqlSession.rollback();
-			throw new Exception("조회된 리뷰 목록이 없습니다.");
-		} catch (Exception e) {
+		} 
+//		catch (NullPointerException e) {
+//			sqlSession.rollback();
+//			throw new Exception("조회된 리뷰 목록이 없습니다.");
+//		} 
+		catch (Exception e) {
 			logger.error(e.getLocalizedMessage());
 			throw new Exception("리뷰 목록 조회에 실패했습니다.");
 		}
@@ -100,13 +101,17 @@ public class ReviewServiceImpl implements ReviewService {
 
 		try {
 			result = sqlSession.selectOne("ReviewMapper.selectReviewGrade", movie);
-			if (result == null) {
-				throw new NullPointerException();
-			}
-		} catch (NullPointerException e) {
-			sqlSession.rollback();
-			throw new Exception("조회된 리뷰 목록이 없습니다.");
-		} catch (Exception e) {
+			System.out.println("평점: " + result);
+			
+		}
+//			if (result == null) {
+//				throw new NullPointerException();
+//			}
+//		} catch (NullPointerException e) {
+//			sqlSession.rollback();
+//			throw new Exception("조회된 리뷰 목록이 없습니다.");
+//		} 
+		catch (Exception e) {
 			logger.error(e.getLocalizedMessage());
 			throw new Exception("리뷰 목록 조회에 실패했습니다.");
 		}

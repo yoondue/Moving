@@ -140,7 +140,7 @@ public class JoinOk extends BaseController {
 
 		// 7. Complete Join -> Move Login Page
 		sqlSession.close();
-		web.redirect(web.getRootPath() + "/main.do", "회원가입이 완료되었습니다. 로그인 해 주세요.");
+		web.redirect(web.getRootPath() + "/login.do", "회원가입이 완료되었습니다. 로그인 해 주세요.");
 
 		return null;
 	}

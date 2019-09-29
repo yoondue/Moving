@@ -176,7 +176,7 @@
 							<h3>코멘트 작성</h3>
 						</div>
 						<div class="col-md-4 col-6 btn-col">
-							<button type="submit" class="btn btn-outline-secondary btn-sm">취소</button>
+							<button type="button" class="btn btn-outline-secondary btn-sm" onclick="history.back(-1);">취소</button>
 							<button type="submit" class="btn btn-outline-secondary btn-sm">작성하기</button>
 						</div>
 						<hr>
