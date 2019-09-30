@@ -160,4 +160,29 @@ public class ReviewServiceImpl implements ReviewService {
 		
 	}
 
+	// 마이페이지에서 하나의 리뷰 조회
+	@Override
+	public Review selectMyReviewItem(Review review) throws Exception {
+		
+		Review result = null;
+
+		try {
+			result = sqlSession.selectOne("ReviewMapper.selectMyReviewItem", review);
+			
+			if (result == null) {
+				throw new NullPointerException();
+			}
+			
+		} catch (NullPointerException e) {
+			sqlSession.rollback();
+			throw new Exception("조회된 리뷰 목록이 없습니다.");
+		} 
+		catch (Exception e) {
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("리뷰 목록 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
 }

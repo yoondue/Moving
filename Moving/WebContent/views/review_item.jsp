@@ -117,7 +117,7 @@
 	<section>
 		<div class="container">
 			<div class="row">
-				<h3>레미제라블</h3>
+				<h3>${reviewItem.movieName}</h3>
 				<hr>
 			</div>
 
@@ -130,27 +130,26 @@
 					<div class="review">
 						<div class="row writer">
 							<div class="col-md-10 col-9">
-								<img src="/Moving/images/profile1.jpg" class="rounded-circle">
+								<img src="${reviewItem.profileImg }" class="rounded-circle">
 								<div class="nickname">
-									<span>이동진 평론가</span>
+									<span>${reviewItem.nickname }</span>
 								</div>
 							</div>
 
 							<div class="col-md-2 col-3">
 								<div class="star-box">
-									<img src="/Moving/images/star.png" class="star"> <span>4.0</span>
+									<img src="/Moving/images/star2.png" class="star"> <span>${reviewItem.grade }</span>
 								</div>
 							</div>
 						</div>
 						<hr>
 						<div class="row review-content">
-							<span>연출과 연기보다는 기획과 제작의 힘.연출과 연기보다는 기획과 제작의 힘.연출과 연기보다는
-								기획과 제작의 힘. 연출과 연기보다는 기획과 제작의 힘.</span>
+							<span>${reviewItem.contents }</span>
 						</div>
 						<hr>
 						<div class="row like">
 							<img src="/Moving/images/thumbs-up.png" class="thumbs-up">
-							<span class="like-span">554</span>
+							<span class="like-span">${reviewItem.likeCount }</span>
 							<button type="submit" class="btn btn-light like-btn">좋아요</button>
 						</div>
 					</div>
@@ -159,8 +158,6 @@
 						<button type="submit" class="btn btn-danger">삭제하기</button>
 					</div>
 				</div>
-			
-					
 			</div>
 		</div>
 		

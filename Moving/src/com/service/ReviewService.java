@@ -19,4 +19,6 @@ public interface ReviewService {
 	public void insertReview(Review review) throws Exception;
 	
 	public void updateLikeCount(Review review) throws Exception;
+	
+	public Review selectMyReviewItem(Review review) throws Exception;
 }

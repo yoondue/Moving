@@ -97,4 +97,13 @@
 		WHERE id=#{id}
 	</update>
 	
+	<select id="selectMyReviewItem" parameterType="com.dto.Review"
+		resultMap="review">
+		SELECT
+		r.id, r.movie_name, r.grade, r.contents, r.like_count, r.reg_date, r.member_id,
+		m.nickname, m.profile_img
+		FROM review r, member m
+		WHERE r.member_id=m.id AND movie_name=#{movieName} AND r.member_id=#{memberId}
+	</select>
+	
 </mapper>

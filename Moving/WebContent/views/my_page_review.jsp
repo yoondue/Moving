@@ -134,11 +134,11 @@ section {
 						<!-- contents -->
 						<ul class="list-group">
 							<c:forEach var="review" items="${reviewList}">
-								<li class="list-group-item"><strong>${review.movieName}</strong>
+								<li class="list-group-item"><a href="${pageContext.request.contextPath }/review_item.do?title=${review.movieName}&id=${review.memberId}"><strong>${review.movieName}</strong>
 									<small class="small">≥ª ∆Ú¡°: ${review.grade }</small> <br>
 								<br>${review.contents } <br>
 								<br>
-								<small class="small">${review.regDate }</small></li>
+								<small class="small">${review.regDate }</small></a></li>
 							</c:forEach>
 						</ul>
 					</div>
