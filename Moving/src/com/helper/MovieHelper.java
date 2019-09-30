@@ -18,37 +18,38 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-public class MovieHelper{
-	
+public class MovieHelper {
+
 	// 네이버 영화 Api로 영화정보 가져오기
 	// keyword: 영화 제목, result: 검색 결과 출력 개수
 	public String movieSelect(String keyword, int result) {
-		
+
 		String json = null;
-		
+
 		String clientId = "FDJL7FCtHA6PdbTjAV5d";// 애플리케이션 클라이언트 아이디값";
 		String clientSecret = "nKbnQqtgYV";// 애플리케이션 클라이언트 시크릿값";
-		
+
 		try {
 			// 영화 제목 UTF-8로 인코딩
 			String text = URLEncoder.encode(keyword, "UTF-8");
-			
-			// api 요청 쿼리에 영화 제목과 출력 개수를 지정
-			String apiURL = "https://openapi.naver.com/v1/search/movie?query=" + text + "&display=" + result;
+
+			// API 요청 쿼리에 영화 제목과 출력 개수를 지정
+			String apiURL = "https://openapi.naver.com/v1/search/movie?query="
+					+ text + "&display=" + result;
 
 			BufferedReader br;
 			URL url;
 			HttpURLConnection con;
-			
+
 			// 쿼리문 URL 객체로 만들어서 연결
 			url = new URL(apiURL);
 			con = (HttpURLConnection) url.openConnection();
-			
+
 			// 요청 방식 GET으로 지정, 발급 받은 id와 secret값 지정
 			con.setRequestMethod("GET");
 			con.setRequestProperty("X-Naver-Client-Id", clientId);
 			con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
-			
+
 			// 응답 코드 가져오기
 			int responseCode = con.getResponseCode();
 
@@ -59,28 +60,28 @@ public class MovieHelper{
 			}
 
 			StringBuffer response = new StringBuffer();
-			
+
 			// 읽어올 다음 라인이 있을때까지 반복
 			while ((json = br.readLine()) != null) {
 				// 받아온 json 데이터 한줄씩 붙여넣기
 				response.append(json);
 			}
 			br.close();
-			
+
 			json = response.toString();
-			
+
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-	
+
 		return json;
 	}
-	
+
 	// 하나의 영화 정보 조회
 	public Movie jsonParser(String json) throws ParseException {
-		
+
 		Movie movie = new Movie();
-		
+
 		// JSONParser 객체 생성
 		JSONParser parser = new JSONParser();
 		// json 데이터 파싱하기
@@ -96,25 +97,25 @@ public class MovieHelper{
 			String title = (String) tmp.get("title");
 			title = title.replace("<b>", "").replace("</b>", "");
 			movie.setTitle(title);
-			
+
 			// 영화 연도 저장
 			movie.setPubDate((String) tmp.get("pubDate"));
-			
+
 			// 감독, 배우 저장
 			String director = ((String) tmp.get("director")).replace("|", "");
 			movie.setDirector(director);
-			
+
 			String actor = ((String) tmp.get("actor")).replace("|", ", ");
-			if(actor.length()>0) {
-				actor = actor.substring(0, actor.length()-2);
+			if (actor.length() > 0) {
+				actor = actor.substring(0, actor.length() - 2);
 			}
 			movie.setActor(actor);
-			
+
 			// 영화의 url주소
 			String url = (String) tmp.get("link");
-			
+
 			Document doc = null;
-			
+
 			// Jsoup라이브러리로 url의 정보 긁어오기(크롤링)
 			try {
 				doc = Jsoup.connect(url).get();
@@ -134,54 +135,54 @@ public class MovieHelper{
 			element = doc.select("dl.info_spec .step1").next();
 			String country = element.select("span:nth-child(2)").text();
 			movie.setCountry(country);
-			
+
 			element = doc.select(".mv_info_area");
 			String image = element.select(".poster a img").attr("src");
 			movie.setImage(image);
-			
+
 			// 영화의 이미지가 없으면 지정한 이미지로 대체
-			if(image.equals("")) {
-				
+			if (image.equals("")) {
+
 				image = "/Moving/images/movie1.jpg";
 			}
 		}
 		return movie;
 	}
-	
+
 	// 여러개의 영화 정보 조회
 	public List<Movie> jsonParserList(String json) throws ParseException {
-		
+
 		List<Movie> movieList = new ArrayList<Movie>();
-		
+
 		JSONParser parser = new JSONParser();
 		JSONObject obj = (JSONObject) parser.parse(json);
 
 		JSONArray item = (JSONArray) obj.get("items");
 
 		for (int i = 0; i < item.size(); i++) {
-			
+
 			Movie movie = new Movie();
-			
+
 			JSONObject tmp = (JSONObject) item.get(i);
-			
+
 			// 영화 제목의 <b>태그 제거
 			String title = (String) tmp.get("title");
 			title = title.replace("<b>", "").replace("</b>", "");
 			movie.setTitle(title);
-			
+
 			movie.setPubDate((String) tmp.get("pubDate"));
-			
+
 			String director = ((String) tmp.get("director")).replace("|", "");
 			movie.setDirector(director);
-			
+
 			String actor = ((String) tmp.get("actor")).replace("|", ", ");
-			
-			if(actor.length()>0) {
-				actor = actor.substring(0, actor.length()-1);
+
+			if (actor.length() > 0) {
+				actor = actor.substring(0, actor.length() - 1);
 			}
-			
+
 			movie.setActor(actor);
-			
+
 			String url = (String) tmp.get("link");
 			Document doc = null;
 
@@ -199,18 +200,18 @@ public class MovieHelper{
 //
 //			Elements element3 = doc.select("p.info_spec");
 //			String country = element3.select("span:nth-child(2)").text();
-			
+
 			Elements element2 = doc.select("dl.info_spec .step1").next();
 			String genre = element2.select("span:first-child").text();
-			
+
 			Elements element3 = doc.select("dl.info_spec .step1").next();
 			String country = element3.select("span:nth-child(2)").text();
-			
+
 			Elements element4 = doc.select(".mv_info_area");
 			String image = element4.select(".poster a img").attr("src");
-			
-			if(image.equals("")) {
-				
+
+			if (image.equals("")) {
+
 				image = "/Moving/images/movie1.jpg";
 			}
 
@@ -218,13 +219,13 @@ public class MovieHelper{
 			movie.setGenre(genre);
 			movie.setContents(contents);
 			movie.setImage(image);
-			
+
 			movieList.add(movie);
-			
+
 		}
 		return movieList;
 	}
-	
+
 //	public List<Movie> searchGenre(String genre){
 //		
 //		List<Movie> movieList = new ArrayList<Movie>();
@@ -276,6 +277,5 @@ public class MovieHelper{
 //		
 //		return movieList;
 //	}
-	
-	
+
 }

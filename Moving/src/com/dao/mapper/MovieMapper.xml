@@ -29,14 +29,16 @@
 			javaType="java.lang.String" jdbcType="VARCHAR" />
 	</resultMap>
 
+	<!-- Search by Movie Genre -->
 	<select id="selectGenreOne" parameterType="com.dto.Movie"
 		resultMap="movie">
-		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
 		SELECT
-		movie_name, genre1, genre2, genre3, year, country, grade,
+		movie_name, genre1, genre2, genre3, year, country,
+		grade,
 		movie_img
 		FROM movie
-		WHERE (genre1 = #{genre1} OR genre2 = #{genre1} OR
+		WHERE (genre1 = #{genre1} OR genre2 =
+		#{genre1} OR
 		genre3 = #{genre1})
 		AND grade >= #{grade}
 		ORDER BY id ASC
@@ -44,14 +46,16 @@
 
 	<select id="selectGenreTwo" parameterType="com.dto.Movie"
 		resultMap="movie">
-		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
 		SELECT
-		movie_name, genre1, genre2, genre3, year, country, grade,
+		movie_name, genre1, genre2, genre3, year, country,
+		grade,
 		movie_img
 		FROM movie
-		WHERE (genre1 = #{genre1} OR genre2 = #{genre1} OR
+		WHERE (genre1 = #{genre1} OR genre2 =
+		#{genre1} OR
 		genre3 = #{genre1}
-		OR genre1 = #{genre2} OR genre2 = #{genre2} OR
+		OR genre1 = #{genre2} OR genre2 =
+		#{genre2} OR
 		genre3 = #{genre2})
 		AND grade >= #{grade}
 		ORDER BY id ASC
@@ -59,16 +63,19 @@
 
 	<select id="selectGenreThree" parameterType="com.dto.Movie"
 		resultMap="movie">
-		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
 		SELECT
-		movie_name, genre1, genre2, genre3, year, country, grade,
+		movie_name, genre1, genre2, genre3, year, country,
+		grade,
 		movie_img
 		FROM movie
-		WHERE (genre1 = #{genre1} OR genre2 = #{genre1} OR
+		WHERE (genre1 = #{genre1} OR genre2 =
+		#{genre1} OR
 		genre3 = #{genre1}
-		OR genre1 = #{genre2} OR genre2 = #{genre2} OR
+		OR genre1 = #{genre2} OR genre2 =
+		#{genre2} OR
 		genre3 = #{genre2}
-		OR genre1 = #{genre3} OR genre2 = #{genre3} OR
+		OR genre1 = #{genre3} OR genre2 =
+		#{genre3} OR
 		genre3 = #{genre3})
 		AND grade >= #{grade}
 		ORDER BY id ASC
